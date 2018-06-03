@@ -1,0 +1,21 @@
+* {
+  box-sizing: border-box;
+}
+#featureBar {
+  background-color: #3F51B5;
+  color: #ffffff;
+  padding: 10px;
+  font-family: "Helvetica Neue", sans-serif;
+  background-image: url("images/titleBar.png");
+  width: 800px;
+  height: 175px;
+}
+#intro {
+  font-size: 20px;
+}
+#nextLessonTitle {
+  font-size: 40px;
+}
+#lessons {
+  margin: 30px;
+}
