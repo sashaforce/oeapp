@@ -9,7 +9,7 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
   $stateProvider
   .state('home', {
     url: '/',
-    templateUrl: 'src/templates/home.html',
+    templateUrl: 'src/templates/home.template.html',
     controller: 'HomeController as ctrl',
     resolve: {
       lessonArray:['LessonDataService', function(LessonDataService){
