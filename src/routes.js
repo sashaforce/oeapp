@@ -18,11 +18,20 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
     }
   })
   .state('lesson', {
-    url: '/lesson',
-    template: 'PLACEHOLDER FOR LESSON TEMPLATE'
+    url: '/lesson/{lessonId}',
+    templateUrl: '/src/templates/lesson.template.html',
+    controller: 'LessonController as ctrl',
+    resolve: {
+      lessonData: ['$stateParams', 'LessonDataService',
+        function($stateParams, LessonDataService) {
+          return LessonDataService.getLesson($stateParams.lessonId);
+        }
+      ]
+    }
   });
 
   $urlRouterProvider.otherwise('/');
+
 }
 
 }());

@@ -7,6 +7,20 @@ LessonDataService.$inject=[];
 function LessonDataService(){
   var svc = this;
 
+  var lessons = [];
+  lessons.push({
+    id: "winter-comes",
+    name: "Winter Cume\u00F0",
+    imageUrl: "/images/winter-button.png",
+    cards: [1, 2, 3]
+  });
+  lessons.push(      {
+    id: "natural-phenomena",
+    name:"Natural Phenomena",
+    imageUrl: "/images/trees-button.png",
+    cards: [4, 5, 6]
+  })
+
   svc.getLessons = function () {
 
     //console.log("BEGIN svc.getLessons()");
@@ -15,20 +29,22 @@ function LessonDataService(){
     // console.log("END svc.getLessons()");
     // return d.promise;
 
-    return [
-      {
-        id: 1,
-        name: "Winter Cume\u00F0", // TODO how to handle special characters?
-        imageUrl: "/images/winter-button.png",
-        cards: [1, 2, 3]
-      },
-      {
-        id: 2,
-        name:"Natural Phenomena",
-        imageUrl: "/images/trees-button.png", // IDEA: if image doesn't exist, svc returns a default
-        cards: [4, 5, 6]
+    return lessons;
+  };
+
+  svc.getLesson = function (id) {
+    console.log("Getting lesson for id: ", id);
+    console.log("Lessons: ", lessons);
+    for (var x=0; x < lessons.length; x++) {
+      var lesson = lessons[x];
+      console.log("Examining lesson ", lesson.id);
+      if (lesson.id === id) {
+        console.log("Returning lesson for ", id);
+        return lesson;
       }
-    ];
+    }
+    console.log("Returning null");
+    return null;
   };
 };
 

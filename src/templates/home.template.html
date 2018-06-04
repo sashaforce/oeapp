@@ -6,10 +6,10 @@
 </div><!-- featureBar -->
 
 <div id="lessons">
-  <a ui-sref="lesson" ng-repeat="l in ctrl.lessons">
-    <div id="l.id" class="lessonDiv">
-    <input type="image" src={{l.imageUrl}}></input>
-    <br>{{l.name}}
-    </div>
-  </a>
-</div>
+    <a ng-repeat="l in ctrl.lessons" ui-sref="lesson({lessonId:l.id})">
+      <div id="lesson-{{l.id}}" class="lessonDiv">
+      <input type="image" src={{l.imageUrl}}></input>
+      <br>{{l.name}}
+      </div>
+    </a><!-- lesson -->
+</div><!-- lessons -->
