@@ -16,6 +16,10 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
         return LessonDataService.getLessons();
       }]
     }
+  })
+  .state('lesson', {
+    url: '/lesson',
+    template: 'PLACEHOLDER FOR LESSON TEMPLATE'
   });
 
   $urlRouterProvider.otherwise('/');

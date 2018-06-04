@@ -6,13 +6,10 @@
 </div><!-- featureBar -->
 
 <div id="lessons">
-  <a href="phoneme.html"><div id="lesson1" class="lessonDiv">
-    <input type="image" src="images/winter.png"></input>
-    <br>Winter cume&eth;
-  </div></a>
+  <a ui-sref="lesson" ng-repeat="l in ctrl.lessons">
+    <div id="l.id" class="lessonDiv">
+    <input type="image" src={{l.imageUrl}}></input>
+    <br>{{l.name}}
+    </div>
+  </a>
 </div>
-
-Lessons:
-<ul>
-  <li ng-repeat="lesson in ctrl.lessons">{{lesson.name}}</li>
-</ul>

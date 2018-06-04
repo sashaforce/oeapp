@@ -1,6 +1,6 @@
 (function() {
   'use strict';
 
-angular.module('OeApp', ['ui.router', 'data']);
+angular.module('OeApp', ['ui.router', 'Data']);
 
 }());
