@@ -1,12 +1,12 @@
-<div>Phoneme template
-<ul>
-  <li>id: {{$ctrl.exercise.id}}</li>
-  <li>description: {{$ctrl.exercise.description}}</li>
-  <li>character: {{$ctrl.exercise.character}}</li>
-  <li>pronunciation: {{$ctrl.exercise.pronunciation}}</li>
-  <li>sampleWordOE: {{$ctrl.exercise.sampleWordOE}}</li>
-  <li>sampleWordModE: {{$ctrl.exercise.sampleWordModE}}</li>
-  <li>audioId: {{$ctrl.exercise.audioId}}</li>
-  <li>imageId: {{$ctrl.exercise.imageId}}</li>
-</ul>
-</div>
+<!-- page header: letter + pronunciation symbol -->
+<div id="letter">{{$ctrl.exercise.letter}}</div>
+<div id="phoneticSymbol">{{$ctrl.exercise.phoneticSymbol}}</div>
+
+<!-- sample word -->
+<img class="listenButton" src="img/listen.png"></img><!-- TODO: use image service -->
+<div id="oeWord">{{$ctrl.exercise.sampleWordOE}}</div>
+<div id="modWord">({{$ctrl.exercise.sampleWordModE}})</div>
+
+<div id="description">{{$ctrl.exercise.description}}</div>
+
+<img id="picture" src="images/eel.png"></img><!-- TODO: use image service -->
