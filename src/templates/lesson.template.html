@@ -1,6 +1,13 @@
-<H1>Lesson Template</H1>
 
+<div>(progress bar will go here)</div>
+
+Lesson:
 <ul>
 <li>id: {{ctrl.id}}</li>
 <li>name: {{ctrl.name}}</li>
+<li>first exercise: <a ui-sref="lesson.exercise({exerciseId:'aesc-example'})">click here</a></li>
 </ul>
+
+<ui-view></ui-view>
+
+<div>(continue button)</div>

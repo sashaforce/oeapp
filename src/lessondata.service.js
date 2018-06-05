@@ -12,14 +12,49 @@ function LessonDataService(){
     id: "winter-comes",
     name: "Winter Cume\u00F0",
     imageUrl: "/images/winter-button.png",
-    cards: [1, 2, 3]
+    exercises: ['aesc-example', 'eth-example', 'i-example']
   });
-  lessons.push(      {
+  lessons.push({
     id: "natural-phenomena",
     name:"Natural Phenomena",
     imageUrl: "/images/trees-button.png",
-    cards: [4, 5, 6]
-  })
+    exercises: ['i-example', 'aesc-example', 'eth-example']
+  });
+
+  var exercises = [];
+  exercises.push({
+    id: "aesc-example",
+    type: "PHONEME",
+    description: "'\u00E6' is called \u00E6sc ('ash'). It sounds like the 'a' in cat.",
+    character: "\u00E6",
+    pronunciation: "/\u00E6/",
+    sampleWordOE: "\u00E6l",
+    sampleWordModE: "eel",
+    audioId: "ael",
+    imageId: "eel"
+  });
+  exercises.push({
+    id: "eth-example",
+    type: "PHONEME",
+    description: "'\u00F0' is called 'eth'. It is pronounced like 'th' in Modern English.",
+    character: "\u00F0",
+    pronunciation: "/\u03B8/ /\u00F0/",
+    sampleWordOE: "mo\u00F0or",
+    sampleWordModE: "mother",
+    audioId: "mothor",
+    imageId: "mother"
+  });
+  exercises.push({
+    id: "i-example",
+    type: "PHONEME",
+    description: "'i' is pronounced 'ee', as in feet.",
+    character: "i",
+    pronunciation: "/i/",
+    sampleWordOE: "lind",
+    sampleWordModE: "shield",
+    audioId: "lind",
+    imageId: "shield"
+  });
 
   svc.getLessons = function () {
 
@@ -33,19 +68,25 @@ function LessonDataService(){
   };
 
   svc.getLesson = function (id) {
-    console.log("Getting lesson for id: ", id);
-    console.log("Lessons: ", lessons);
     for (var x=0; x < lessons.length; x++) {
       var lesson = lessons[x];
-      console.log("Examining lesson ", lesson.id);
       if (lesson.id === id) {
-        console.log("Returning lesson for ", id);
         return lesson;
       }
     }
-    console.log("Returning null");
     return null;
   };
-};
+
+  svc.getExercise = function (id) { //TODO before writing a third one... generalize
+    for (var x=0; x < exercises.length; x++) {
+      var exercise = exercises[x];
+      if (exercise.id === id) {
+        return exercise;
+      }
+    }
+    return null;
+  };
+
+}; // LessonDataService
 
 }());
