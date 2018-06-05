@@ -1,5 +1,3 @@
-exercise info:
-<ul>
-  <li>id: {{ctrl.id}}</li>
-  <li>type: {{ctrl.type}}</li>
-</ul>
+exercise {{ctrl.id}} ({{ctrl.type}})
+
+<phoneme-component ng-if="ctrl.type === 'PHONEME'" exercise="ctrl.exercise"></phoneme-component>

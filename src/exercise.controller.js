@@ -7,6 +7,8 @@ ExerciseController.$inject = ['exerciseData'];
 function ExerciseController(exerciseData){
   var ctrl = this;
 
+  ctrl.exercise = exerciseData;
+  console.log("exerciseData: ", ctrl.exercise);
   ctrl.id = exerciseData.id;
   ctrl.type = exerciseData.type;
 }
