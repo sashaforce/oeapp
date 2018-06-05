@@ -66,6 +66,10 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
           return LessonDataService.getExercise($stateParams.exerciseId);
         }]
     }
+  })
+  .state('lesson.complete', {
+    url: '/complete',
+    component: 'lessonCompleteComponent'
   });
 
   $urlRouterProvider.otherwise('/');
