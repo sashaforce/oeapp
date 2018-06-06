@@ -1,12 +1,13 @@
 <!-- page header: letter + pronunciation symbol -->
-<div id="letter">{{$ctrl.exercise.letter}}</div>
-<div id="phoneticSymbol">{{$ctrl.exercise.phoneticSymbol}}</div>
+<div id="letter">{{ctrl.exercise.letter}}</div>
+<div id="phoneticSymbol">{{ctrl.exercise.phoneticSymbol}}</div>
 
 <!-- sample word -->
-<img class="listenButton" src="img/listen.png"></img><!-- TODO: use image service -->
-<div id="oeWord">{{$ctrl.exercise.sampleWordOE}}</div>
-<div id="modWord">({{$ctrl.exercise.sampleWordModE}})</div>
+<img class="listenButton" ng-src="{{ctrl.listenButtonUrl}}"></img>
 
-<div id="description">{{$ctrl.exercise.description}}</div>
+<div id="oeWord">{{ctrl.exercise.sampleWordOE}}</div>
+<div id="modWord">({{ctrl.exercise.sampleWordModE}})</div>
 
-<img id="picture" src="images/eel.png"></img><!-- TODO: use image service -->
+<div id="description">{{ctrl.exercise.description}}</div>
+
+<img id="picture" height="200px" ng-src="{{ctrl.imageUrl}}"></img>
