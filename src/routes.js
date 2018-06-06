@@ -22,32 +22,6 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
     templateUrl: '/src/templates/lesson.template.html',
     controller: 'LessonController as ctrl',
     abstract: true,
-    // redirectTo: (trans) => {
-    //   // getAsync tells the resolve to load
-    //   let resolvePromise = trans.injector().getAsync('lessonData');
-    //   console.log("resolvePromise:", resolvePromise);
-    //   let exerciseId = resolvePromise.then(resolveData => resolveData.exercises[0]);
-    //   console.log("exerciseId:", exerciseId);
-    //   let lessonId = resolvePromise.then(resolveData => resolveData.id);
-    //   console.log("lessonId:", lessonId);
-    //   return {
-    //     state: 'lesson.exercise',
-    //     params: {
-    //       lessonId: lessonId,
-    //       exerciseId: exerciseId
-    //     }
-    //   }
-    // },
-    // redirectTo: (trans) => {
-    //   console.log("trans.params():", trans.params());
-    //   return {
-    //     state: 'lesson.exercise',
-    //     params: {
-    //       exerciseId:'aesc-example',
-    //       lessonId:'winter-comes'
-    //     }
-    //   }
-    // },
     resolve: {
       lessonData: ['$stateParams', 'LessonDataService',
         function($stateParams, LessonDataService) {

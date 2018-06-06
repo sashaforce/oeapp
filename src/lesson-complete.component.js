@@ -2,7 +2,7 @@
   'use strict';
 
 angular.module('OeApp').component('lessonCompleteComponent', {
-  templateUrl: "/src/templates/lessoncomplete.template.html"
+  templateUrl: "/src/templates/lesson-complete.template.html"
 });
 
 }());
