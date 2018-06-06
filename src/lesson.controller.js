@@ -10,6 +10,7 @@ function LessonController(lessonData, $state) {
   console.log("Initializing currentExerciseIndex");
   var currentExerciseIndex = 0;
   // BUG: reloading the page resets the index, but doesn't change the current page
+  // IDEA: get current exercise from exercise component, instead of maintaining an index
   ctrl.lessonComplete = false;
 
   ctrl.id = lessonData.id;
@@ -18,7 +19,7 @@ function LessonController(lessonData, $state) {
   ctrl.continue = function () {
     console.log("Current index: ", currentExerciseIndex);
     if (ctrl.lessonComplete) {
-      // TODO: go home
+      // go home
       console.log("Go home");
       $state.go("home");
     } else if (currentExerciseIndex < (lessonData.exercises.length - 1)) {
@@ -29,12 +30,11 @@ function LessonController(lessonData, $state) {
         exerciseId: lessonData.exercises[++currentExerciseIndex]
       });
     } else {
-      // TODO: move to "lesson complete"
+      // move to "lesson complete"
       console.log("Lesson Complete");
       ctrl.lessonComplete = true;
       $state.go("lesson.complete");
     }
-    // TODO check for end of exercises, go to end screen (or home for now)
   }
 }
 
