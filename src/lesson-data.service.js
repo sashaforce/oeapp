@@ -11,13 +11,13 @@ function LessonDataService(){
   lessons.push({
     id: "winter-comes",
     name: "Winter Cume\u00F0",
-    imageUrl: "/images/winter-button.png",
+    imageId: "winter-button",
     exercises: ['aesc-example', 'eth-example', 'i-example']
   });
   lessons.push({
     id: "natural-phenomena",
     name:"Natural Phenomena",
-    imageUrl: "/images/trees-button.png",
+    imageId: "trees-button",
     exercises: ['i-example', 'aesc-example', 'eth-example']
   });
 
