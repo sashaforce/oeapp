@@ -2,7 +2,7 @@
   'use strict';
 
   angular.module('OeApp').component('phonemeComponent', {
-    templateUrl: '/src/templates/phoneme.template.html',
+    templateUrl: 'src/templates/phoneme.template.html',
     controller: 'PhonemeController as ctrl',
     bindings: {
       exercise: '<'
@@ -19,6 +19,7 @@
 
     var audioElement = document.getElementById('sampleAudio');
     console.log("audioElement:", audioElement);
+
 
     ctrl.playExample = function () {
       console.log("Play sample word");
