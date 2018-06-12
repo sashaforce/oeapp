@@ -19,3 +19,7 @@
 #lessons {
   margin: 30px;
 }
+
+#audio-box {
+  border: 2px solid black;
+}
