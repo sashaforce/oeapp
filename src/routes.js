@@ -19,7 +19,7 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
   })
   .state('lesson', {
     url: '/lesson/{lessonId}',
-    templateUrl: '/src/templates/lesson.template.html',
+    templateUrl: 'src/templates/lesson.template.html',
     controller: 'LessonController as ctrl',
     abstract: true,
     resolve: {
@@ -32,7 +32,7 @@ function RoutesConfig($stateProvider, $urlRouterProvider) {
   })
   .state('lesson.exercise', {
     url: '/exercise/{exerciseId}',
-    templateUrl: '/src/templates/exercise.template.html',
+    templateUrl: 'src/templates/exercise.template.html',
     controller: 'ExerciseController as ctrl',
     resolve: {
       exerciseData: ['$stateParams', 'LessonDataService',
