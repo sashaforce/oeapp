@@ -3,9 +3,21 @@
 <div id="phoneticSymbol">{{ctrl.exercise.phoneticSymbol}}</div>
 
 <!-- sample word -->
-<div id="oeWord">{{ctrl.exercise.sampleWordOE}}</div>
-<div id="modWord">({{ctrl.exercise.sampleWordModE}})</div>
-<audio controls id="sampleAudio" ng-src="{{ctrl.audioUrl}}"></audio>
+<div id="audio-box">
+  <div id="oeWord">{{ctrl.exercise.sampleWordOE}}</div>
+  <div id="modWord">({{ctrl.exercise.sampleWordModE}})</div>
+  <div>
+    <font color="red">audio control 1:</font><br>
+    <audio class="audio" controls id="sampleAudio" ng-src="{{ctrl.audioUrl}}"></audio>
+  </div>
+  <div>
+    <font color="red">audio control 2:</font><br>
+    <button onclick="document.getElementById('sampleAudio').play()">Play</button>
+    <!-- <button onclick="document.getElementById('sampleAudio').pause()">Pause</button>
+    <button onclick="document.getElementById('sampleAudio').volume += 0.1">Vol+ </button>
+    <button onclick="document.getElementById('sampleAudio').volume -= 0.1">Vol- </button> -->
+  </div>
+</div>
 
 <div id="description">{{ctrl.exercise.description}}</div>
 
