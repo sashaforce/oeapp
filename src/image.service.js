@@ -12,7 +12,7 @@ function ImageService(){
   var imageArray = [];
   imageArray.push({
     id: 'speaker-button-sm',
-    url: '/images/speaker-button-sm.gif'
+    url: 'images/speaker-button-sm.gif'
   });
 
   svc.getUrl = function (id, enabled) {
@@ -33,9 +33,9 @@ function ImageService(){
 
      // apply enabled/disabled flag
      if (enabled) {
-       return `/images/${id}.png`;
+       return `images/${id}.png`;
      } else {
-       return `/images/${id}-disabled.png`;
+       return `images/${id}-disabled.png`;
      }
   }
 }
