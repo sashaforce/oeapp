@@ -23,7 +23,7 @@ function AudioDataService(){
        }
      }
 
-    return `/audio/${id}.mp3`;
+    return `audio/${id}.mp3`;
   }
 }
 
