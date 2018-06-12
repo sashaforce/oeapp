@@ -7,7 +7,8 @@
     bindings: {
       exercise: '<'
     }
-  }).controller('PhonemeController', PhonemeController);
+  })
+  .controller('PhonemeController', PhonemeController);
 
   PhonemeController.$inject = ['ImageService', 'AudioDataService'];
   function PhonemeController(ImageService, AudioDataService) {

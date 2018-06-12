@@ -18,7 +18,7 @@ function LessonDataService(){
     id: "natural-phenomena",
     name:"Natural Phenomena",
     imageId: "trees-button",
-    exercises: ['i-example', 'aesc-example', 'eth-example']
+    exercises: ['aesc-example', 'hwaet-record', 'i-example', 'eth-example']
   });
 
   var exercises = [];
@@ -55,7 +55,13 @@ function LessonDataService(){
     audioId: "lind",
     imageId: "shield"
   });
-
+  exercises.push({
+    id: "hwaet-record",
+    type: "RECORD",
+    oeWord: "Hw\u00E6t!",
+    modeWord: "Hey!",
+    audioId: "hwaet",
+  });
   svc.getLessons = function () {
 
     //console.log("BEGIN svc.getLessons()");
@@ -77,7 +83,7 @@ function LessonDataService(){
     return null;
   };
 
-  svc.getExercise = function (id) { //TODO before writing a third one... generalize
+  svc.getExercise = function (id) {
     for (var x=0; x < exercises.length; x++) {
       var exercise = exercises[x];
       if (exercise.id === id) {
