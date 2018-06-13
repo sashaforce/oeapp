@@ -6,8 +6,10 @@
   color: #ffffff;
   padding: 10px;
   font-family: "Helvetica Neue", sans-serif;
-  background-image: url("images/titleBar.png");
-  width: 800px;
+  background-image: url("images/TitleBar.png");
+  background-position: right top;
+  background-repeat: no-repeat;
+  /* width: 800px; */
   height: 175px;
 }
 #intro {
