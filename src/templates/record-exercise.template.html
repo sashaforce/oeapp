@@ -1,5 +1,20 @@
+<div id="instructions">
+  Read this aloud:
+</div>
+
+<div class="audio-box"><!-- TODO should this be a component? -->
+  <div id="oeWord">{{ctrl.exercise.oeWord}}</div>
+  <div id="modWord">({{ctrl.exercise.modeWord}})</div>
+  <div>
+    <font color="red">audio control 1:</font><br>
+    <audio class="audio" controls id="sampleAudio" ng-src="{{ctrl.audioUrl}}"></audio>
+  </div>
+  <button id="record-button" ng-click="ctrl.toggleRecord()">{{ctrl.recordButtonText}}</button>
+  <a id="save" href="#">SAVE</a>
+</div>
+
 <div>
-  <h1>Recording Exercise</h1>
+  Exercise Data:
   <ul>
     <li ng-repeat="(key, value) in ctrl.exercise">{{key}}: {{value}}</li>
   </ul>
