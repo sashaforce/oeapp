@@ -40,9 +40,10 @@ function RecordExerciseController () {
       if (!audioRecorder) {
         console.log("Recorder not ready");
         // TODO: disable record button until recorder is ready
-        audioRecorder.clear();
-        audioRecorder.record();
+        return;
       }
+      audioRecorder.clear();
+      audioRecorder.record();
       // update UI
       ctrl.isRecording = true;
       ctrl.recordButtonText = "Stop";
@@ -90,7 +91,10 @@ function RecordExerciseController () {
   }
 
   function doneEncoding( blob ) {
-    Recorder.setupDownload( blob, "myRecording.wav" );
+    //Recorder.setupDownload( blob, "myRecording.wav" );
+    var url = (window.URL || window.webkitURL).createObjectURL(blob);
+    console.log("audio:", audio);
+    audio.src = url;
   }
 }
 
