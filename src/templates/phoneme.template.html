@@ -3,13 +3,12 @@
 <div id="phoneticSymbol">{{ctrl.exercise.phoneticSymbol}}</div>
 
 <!-- sample word -->
-<div id="audio-box">
-  <div id="oeWord">{{ctrl.exercise.sampleWordOE}}</div>
-  <div id="modWord">({{ctrl.exercise.sampleWordModE}})</div>
-  <div>
-    <font color="red">audio control 3 (call playExample()):</font><br>
-    <button ng-click="ctrl.playExample()">Play</button>
-  </div>
+<div>
+  <sample-player-component
+    url="ctrl.audioUrl"
+    oe-word="ctrl.exercise.sampleWordOE"
+    me-word="ctrl.exercise.sampleWordModE">
+  </sample-player-component>
 </div>
 
 <div id="description">{{ctrl.exercise.description}}</div>
