@@ -1,7 +1,18 @@
 <div>
-  Sample Player Component
-  <button ng-click="ctrl.playExample()">play</button>
-  <ul>
+  <!-- Sample Player Component -->
+  <!-- <button ng-click="ctrl.playExample()">play</button> -->
+  <table>
+    <tr>
+      <td>
+        <img src="images/speaker-button-sm.gif" ng-click="ctrl.playExample()">
+      </td>
+      <td>
+        <div id="oeWord">{{ctrl.oeWord}}</div>
+        <div id="modWord">({{ctrl.meWord}})</div>
+      </td>
+    </tr>
+  </table>
+  <!-- <ul>
     <li ng-repeat="(key, value) in ctrl">{{key}}: {{value}}</li>
-  </ul>
+  </ul> -->
 </div>
