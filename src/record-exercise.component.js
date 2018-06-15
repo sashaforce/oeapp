@@ -9,8 +9,8 @@ angular.module('OeApp').component('recordExerciseComponent', {
   }
 }).controller('RecordExerciseController', RecordExerciseController);
 
-RecordExerciseController.$inject = [];
-function RecordExerciseController () {
+RecordExerciseController.$inject = ['AudioDataService'];
+function RecordExerciseController (AudioDataService) {
 
   var ctrl = this;
 
@@ -18,7 +18,8 @@ function RecordExerciseController () {
 
   ctrl.isRecording = false;
   ctrl.recordButtonText = "Record";
-
+  ctrl.sampleAudioUrl = AudioDataService.getUrl(ctrl.exercise.audioId);
+  
   console.log("Initializing Audio");
   initAudio();
 
@@ -26,6 +27,11 @@ function RecordExerciseController () {
 
   const audio = document.querySelector('audio');
   const recordButton = document.querySelector('#record-button');
+
+  ctrl.playSample = function () {
+    console.log("playSample() START");
+    audio.play();
+  }
 
   ctrl.toggleRecord = function () {
     if (ctrl.isRecording) {
@@ -93,7 +99,6 @@ function RecordExerciseController () {
   function doneEncoding( blob ) {
     //Recorder.setupDownload( blob, "myRecording.wav" );
     var url = (window.URL || window.webkitURL).createObjectURL(blob);
-    console.log("audio:", audio);
     audio.src = url;
   }
 }

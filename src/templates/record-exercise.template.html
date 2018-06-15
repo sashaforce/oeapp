@@ -2,17 +2,24 @@
   Read this aloud:
 </div>
 
-<div class="audio-box"><!-- TODO should this be a component? -->
-  <div id="oeWord">{{ctrl.exercise.oeWord}}</div>
-  <div id="modWord">({{ctrl.exercise.modeWord}})</div>
-  <div>
-    <font color="red">audio control 1:</font><br>
-    <audio class="audio" controls id="sampleAudio" ng-src="{{ctrl.audioUrl}}"></audio>
-  </div>
-  <button id="record-button" ng-click="ctrl.toggleRecord()">{{ctrl.recordButtonText}}</button>
-  <a id="save" href="#">SAVE</a>
+<!-- sample word -->
+<div>
+  <sample-player-component
+    url="ctrl.sampleAudioUrl"
+    oe-word="ctrl.exercise.oeWord"
+    me-word="ctrl.exercise.modeWord">
+  </sample-player-component>
 </div>
 
+
+
+<div><!-- TODO should this be a component? -->
+
+  <button id="record-button" ng-click="ctrl.toggleRecord()">{{ctrl.recordButtonText}}</button>
+  <audio class="audio" controls id="sampleAudio"  ng-hide="false"></audio>
+</div>
+
+<!-- TODO: consider adding this to all exercises (as a component? add to lesson template? but only visible in debug mode) -->
 <div>
   Exercise Data:
   <ul>
