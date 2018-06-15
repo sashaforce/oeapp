@@ -31,18 +31,11 @@ function RecordExerciseController (AudioDataService) {
   catch(e) {
     alert('Web Audio API is not supported in this browser');
   }
-  initAudio(); // TODO rename to reflect this is about the recorder
+  initAudioRecorder(); // TODO rename to reflect this is about the recorder
 
   var audioContext = new AudioContext();
 
-  const audio = document.querySelector('audio');
   const recordButton = document.querySelector('#record-button');
-
-  // ctrl.playSample = function () {
-  //   console.log("playSample() START");
-  //   audio.play();
-  // }
-
 
   ctrl.playRecording = function () {
     console.log("Play Recording");
@@ -77,8 +70,8 @@ function RecordExerciseController (AudioDataService) {
   }
 
   // TODO: Should all this audio stuff be provided by a service?
-  function initAudio() {
-    console.log("initAudio() START");
+  function initAudioRecorder() {
+    console.log("initAudioRecorder() START");
     if (!navigator.getUserMedia)
       navigator.getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
@@ -94,7 +87,7 @@ function RecordExerciseController (AudioDataService) {
         "optional": []
         },
       }, gotStream, function(e) {
-        alert('Error getting audio');
+        alert('Error getting audio'); // TODO: handle this better
         console.log(e);
     });
   }
@@ -113,13 +106,12 @@ function RecordExerciseController (AudioDataService) {
   function gotBuffers( buffers ) {
     // the ONLY time gotBuffers is called is right after a new recording is completed -
     // so here's where we should set up the download.
-    audioRecorder.exportWAV( doneEncoding );
+    audioRecorder.exportWAV( doneEncoding );// TODO: do we need this step, can we take the buffers, then skip the decode step later? And if so, do we still need the Recorder library?
   }
 
   function doneEncoding( blob ) {
     //Recorder.setupDownload( blob, "myRecording.wav" );
     var url = (window.URL || window.webkitURL).createObjectURL(blob);
-    audio.src = url; // for sample player component, loaded from existing mp3, now loading from fresh recording
     loadSound(url);
   }
 

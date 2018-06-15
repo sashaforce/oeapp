@@ -11,19 +11,15 @@
   </sample-player-component>
 </div>
 
-
-
 <div><!-- TODO should this be a component? -->
-
   <button id="record-button" ng-click="ctrl.toggleRecord()">{{ctrl.recordButtonText}}</button>
   <button id="play-button" ng-click="ctrl.playRecording()">Play Recording</button>
-  <audio class="audio" controls id="sampleAudio"  ng-hide="false"></audio>
 </div>
 
-<!-- TODO: consider adding this to all exercises (as a component? add to lesson template? but only visible in debug mode) -->
-<div>
+<!-- Debug Block -->
+<!-- <div>
   Exercise Data:
   <ul>
     <li ng-repeat="(key, value) in ctrl.exercise">{{key}}: {{value}}</li>
   </ul>
-</div>
+</div> -->
