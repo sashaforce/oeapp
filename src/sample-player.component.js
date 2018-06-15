@@ -7,7 +7,7 @@
     bindings: {
       url: '<',
       oeWord: '<',
-      meWord: '<'
+      meWord: '<' // TODO: Standardize naming oeWord/meWord
     }
   })
   .controller('SamplePlayerController', SamplePlayerController);
