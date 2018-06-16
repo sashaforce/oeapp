@@ -1,0 +1,3 @@
+<img ng-src="{{ctrl.buttonImage}}" ng-click="ctrl.changeState()"></img>
+<!-- <button ng-click="ctrl.changeState()">{{ctrl.state}}</button> -->
+<button ng-click="ctrl.changeState('READY')" ng-if="ctrl.state=='DONE'">TRY AGAIN</button>

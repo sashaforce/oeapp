@@ -14,6 +14,14 @@ function ImageService(){
     id: 'speaker-button-sm',
     url: 'images/speaker-button-sm.gif'
   });
+  imageArray.push({
+    id: 'microphone-button-active',
+    url: 'images/microphone-button-active.gif'
+  });
+  imageArray.push({
+    id: 'speaker-button-active',
+    url: 'images/speaker-button-active.gif'
+  });
 
   svc.getUrl = function (id, enabled) {
 
