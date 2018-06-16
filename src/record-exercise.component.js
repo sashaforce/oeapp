@@ -106,7 +106,8 @@ function RecordExerciseController (AudioDataService) {
   function gotBuffers( buffers ) {
     // the ONLY time gotBuffers is called is right after a new recording is completed -
     // so here's where we should set up the download.
-    audioRecorder.exportWAV( doneEncoding );// TODO: do we need this step, can we take the buffers, then skip the decode step later? And if so, do we still need the Recorder library?
+    console.log("gotBuffers() START:", buffers);
+    audioRecorder.exportWAV( doneEncoding );
   }
 
   function doneEncoding( blob ) {
@@ -123,7 +124,7 @@ function RecordExerciseController (AudioDataService) {
     // Decode asynchronously
     request.onload = function() {
       context.decodeAudioData(request.response, function(buffer) {
-        console.log("context.decodeAudioData()");
+        console.log("context.decodeAudioData(); buffer =", buffer);
         sampleBuffer = buffer;
       }, function(){console.log("ERROR");}); // TODO: Handle this properly
     }
