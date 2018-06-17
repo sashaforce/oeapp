@@ -3,8 +3,8 @@
 
 angular.module("OeApp").controller("LessonController", LessonController);
 
-LessonController.$inject = ['lessonData', '$state'];
-function LessonController(lessonData, $state) {
+LessonController.$inject = ['lessonData', '$state', '$scope'];
+function LessonController(lessonData, $state, $scope) {
   var ctrl = this;
 
   console.log("Initializing currentExerciseIndex");
@@ -15,6 +15,13 @@ function LessonController(lessonData, $state) {
 
   ctrl.id = lessonData.id;
   ctrl.name = lessonData.name;
+
+  ctrl.continueDisabled = false;
+
+  $scope.$on('lesson:enableContinue', function (event, data) {
+    console.log("got message with data:", data);
+    ctrl.continueDisabled = !(data.okToContine);
+  })
 
   ctrl.continue = function () {
     console.log("Current index: ", currentExerciseIndex);
