@@ -31,7 +31,7 @@ function RecordExerciseController (AudioDataService) {
   catch(e) {
     alert('Web Audio API is not supported in this browser');
   }
-  initAudioRecorder(); // TODO rename to reflect this is about the recorder
+  initAudioRecorder(); 
 
   var audioContext = new AudioContext();
 
