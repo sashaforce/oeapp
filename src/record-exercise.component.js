@@ -14,8 +14,6 @@ function RecordExerciseController (AudioDataService) {
 
   var ctrl = this;
 
-  ctrl.isRecording = false;
-  ctrl.recordButtonText = "Record";
   ctrl.sampleAudioUrl = AudioDataService.getUrl(ctrl.exercise.audioId);
 
 }
