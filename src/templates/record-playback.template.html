@@ -1,3 +1,7 @@
-<img ng-src="{{ctrl.buttonImage}}" ng-click="ctrl.changeState()"></img>
+<img ng-if="ctrl.state=='READY'" ng-src="{{ctrl.micImage}}" ng-click="ctrl.changeState('RECORDING')"></img>
+<img ng-if="ctrl.state=='RECORDING'" ng-src="{{ctrl.activeMicImage}}" ng-click="ctrl.changeState('DONE')"></img>
+<img ng-if="ctrl.state=='DONE'" ng-src="{{ctrl.speakerImage}}" ng-click="ctrl.changeState('LISTENING')"></img>
+<img ng-if="ctrl.state=='LISTENING'" ng-src="{{ctrl.activeSpeakerImage}}" ng-click="ctrl.changeState('DONE')"></img>
+
 <!-- <button ng-click="ctrl.changeState()">{{ctrl.state}}</button> -->
 <button ng-click="ctrl.changeState('READY')" ng-if="ctrl.state=='DONE'">TRY AGAIN</button>
