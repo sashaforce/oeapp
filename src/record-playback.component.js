@@ -3,7 +3,10 @@
 
   angular.module('OeApp').component('recordPlaybackComponent', {
     templateUrl: 'src/templates/record-playback.template.html',
-    controller: 'RecordPlaybackController as ctrl'
+    controller: 'RecordPlaybackController as ctrl',
+    bindings: {
+      enableContinue: '&enableContinue'
+    }
   })
   .controller('RecordPlaybackController', RecordPlaybackController);
 
@@ -19,6 +22,8 @@
 
     // init state
     ctrl.state = 'READY';
+
+    var listenCount = 0; // incremented each time user listens to their recording
 
     // init audio
     var audioRecorder = null;
@@ -37,11 +42,13 @@
 
     var audioContext = new AudioContext();
 
-
     function changeState (toState) {
       console.log("Change State from", ctrl.state, "to", toState);
       // set new state
       ctrl.state = toState;
+
+      // ok to continue if user has recorded themselves and listened to the recording at least once
+      ctrl.enableContinue({enable:(ctrl.state === 'DONE') && (listenCount>0)});
     }
 
     ctrl.startRecording = function () {
@@ -71,6 +78,8 @@
       source.onended = function () {changeState('DONE'); $scope.$digest()};
       source.connect(context.destination);       // connect the source to the context's destination (the speakers)
       source.start(0);                           // play the source now
+      console.log("increment listenCount");
+      listenCount++;
     }
 
     ctrl.stopPlayback = function () {

@@ -13,9 +13,13 @@ RecordExerciseController.$inject = ['AudioDataService'];
 function RecordExerciseController (AudioDataService) {
 
   var ctrl = this;
-
   ctrl.sampleAudioUrl = AudioDataService.getUrl(ctrl.exercise.audioId);
+  ctrl.okToContinue = false;
 
+  ctrl.enableContinue = function (enable) {
+    console.log("enableContinue()", enable);
+    ctrl.okToContinue = enable;
+  }
 }
 
 }());

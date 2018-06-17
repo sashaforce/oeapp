@@ -11,6 +11,10 @@ function ExerciseController(exerciseData){
   console.log("exerciseData: ", ctrl.exercise);
   ctrl.id = exerciseData.id;
   ctrl.type = exerciseData.type;
+
+  ctrl.enableContinue = function (enable) {
+    ctrl.okToContinue = enable;
+  }
 }
 
 }());

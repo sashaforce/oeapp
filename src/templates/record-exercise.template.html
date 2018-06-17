@@ -12,12 +12,18 @@
 </div>
 
 <div>
-  <record-playback-component></record-playback-component>
+  <record-playback-component
+    enable-continue="ctrl.enableContinue(enable)">
+  </record-playback-component>
 </div>
 
 <!-- Debug Block -->
 <!-- <div>
-  Exercise Data:
+  ctrl:
+  <ul>
+    <li ng-repeat="(key, value) in ctrl">{{key}}: {{value}}</li>
+  </ul>
+  ctrl.exercise:
   <ul>
     <li ng-repeat="(key, value) in ctrl.exercise">{{key}}: {{value}}</li>
   </ul>
