@@ -20,9 +20,31 @@
     // init state
     ctrl.state = 'READY';
 
-    ctrl.changeState = function (toState) {
+    function changeState (toState) {
       // set new state
       ctrl.state = toState;
+    }
+
+    //ctrl.changeState = changeState; // // TODO: remove once no longer used by template
+
+    ctrl.startRecording = function () {
+      changeState('RECORDING');
+    }
+
+    ctrl.stopRecording = function () {
+      changeState('DONE');
+    }
+
+    ctrl.startPlayback = function () {
+      changeState('LISTENING');
+    }
+
+    ctrl.stopPlayback = function () {
+      changeState('DONE');
+    }
+
+    ctrl.tryAgain = function () {
+      changeState('READY');
     }
 
   };
