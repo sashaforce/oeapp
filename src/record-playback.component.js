@@ -44,8 +44,6 @@
       ctrl.state = toState;
     }
 
-    //ctrl.changeState = changeState; // // TODO: remove once no longer used by template
-
     ctrl.startRecording = function () {
       changeState('RECORDING');
       if (!audioRecorder) {
