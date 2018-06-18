@@ -18,7 +18,7 @@ function LessonDataService(){
     id: "natural-phenomena",
     name:"Natural Phenomena",
     imageId: "trees-button",
-    exercises: ['aesc-example', 'hwaet-record', 'i-example', 'eth-example']
+    exercises: ['day-night']
   });
 
   var exercises = [];
@@ -62,6 +62,11 @@ function LessonDataService(){
     modeWord: "Hey!",
     audioId: "hwaet",
   });
+  exercises.push({
+    id: "day-night",
+    type: "WORD-TO-PICTURE",
+  });
+
   svc.getLessons = function () {
 
     //console.log("BEGIN svc.getLessons()");
