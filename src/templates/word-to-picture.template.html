@@ -6,7 +6,7 @@ function drag(event) {
 </script> -->
 
 <div class="picture-word-box" ng-repeat="p in ctrl.pictures">
-  <image src="{{p}}"></image>
+  <image ng-src="{{p}}"></image>
   <div id="drop-{{$index}}"
     class="word-drop"
     ondrop="angular.element(this).scope().drop(event)"
