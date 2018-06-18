@@ -1,6 +1,21 @@
 * {
   box-sizing: border-box;
 }
+
+img {
+  /* constrain all images to size of container */
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* #continue-button {
+  clear:left;
+} */
+
+div#continue {
+  clear: both;
+}
+
 #featureBar {
   background-color: #3F51B5;
   color: #ffffff;
@@ -24,4 +39,31 @@
 
 #audio-box {
   border: 2px solid black;
+}
+
+.picture-word-box {
+  border: 2px solid black;
+  width: 200px;
+  padding: 2px;
+  margin: 4px;
+  float: left;
+}
+
+.word-drop {
+  border: 2px solid black;
+  width: 192px;
+  height: 50px;
+  padding: 2px;
+}
+
+.draggable-word {
+  /* border: 2px solid black; */
+  width: 150px;
+  height: 40px;
+  padding: 2px;
+  margin: 3px;
+  background-color: #6c7ac7;
+  color: #FFFFFF;
+  float:left;
+  clear:both;
 }

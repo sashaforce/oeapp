@@ -18,7 +18,7 @@ function LessonDataService(){
     id: "natural-phenomena",
     name:"Natural Phenomena",
     imageId: "trees-button",
-    exercises: ['day-night']
+    exercises: ['day-night', 'raven-eel-dog']
   });
 
   var exercises = [];
@@ -65,6 +65,14 @@ function LessonDataService(){
   exercises.push({
     id: "day-night",
     type: "WORD-TO-PICTURE",
+    pictures: ['day', 'night'],
+    words: ['d\u00E6g', 'niht']
+  });
+  exercises.push({
+    id: "raven-eel-dog",
+    type: "WORD-TO-PICTURE",
+    pictures: ['raven', 'eel', 'dog'],
+    words: ['hr\u00E6fn', '\u00E6l', 'hund']
   });
 
   svc.getLessons = function () {
