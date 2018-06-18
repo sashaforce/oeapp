@@ -19,7 +19,7 @@ function LessonController(lessonData, $state, $scope) {
   ctrl.continueDisabled = false;
 
   $scope.$on('lesson:enableContinue', function (event, data) {
-    console.log("got message with data:", data);
+    console.log("received event", event, "data", data);
     ctrl.continueDisabled = !(data.okToContine);
   })
 
