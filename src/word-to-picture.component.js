@@ -16,7 +16,10 @@ function WordToPictureController ($scope, ImageService) {
 
   ctrl.pictures = [];
   for (var i=0; i < ctrl.exercise.pictures.length; i++) {
-    ctrl.pictures.push(ImageService.getUrl(ctrl.exercise.pictures[i]));
+    var picture = {
+      url: ImageService.getUrl(ctrl.exercise.pictures[i])
+    }
+    ctrl.pictures.push(picture);
   }
   ctrl.words = ctrl.exercise.words; // TODO: randomize
 
@@ -31,7 +34,6 @@ function WordToPictureController ($scope, ImageService) {
 
   // attach drag & drop methods to $scope for access via angular.element(this).scope()
 
-  // TODO: prevent dropping more than one word into drop box
   // TODO: allow drop back in original spot
   // TODO: allow retry
   // TODO: recognize correct/incorrect
@@ -43,7 +45,8 @@ function WordToPictureController ($scope, ImageService) {
   }
 
   $scope.drop = function(event) {
-    console.log("drop()");
+    console.log("drop()", event);
+    // drop the word
     event.preventDefault();
     var data = event.dataTransfer.getData("text");
     event.target.appendChild(document.getElementById(data));
@@ -51,7 +54,9 @@ function WordToPictureController ($scope, ImageService) {
 
   $scope.allowDrop = function (event) {
     console.log("allowDrop()");
-    event.preventDefault();
+    if (event.target.classList.contains("word-drop") && event.target.children.length == 0) {
+      event.preventDefault();
+    }
   }
 }
 
