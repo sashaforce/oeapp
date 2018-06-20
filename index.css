@@ -52,6 +52,13 @@ div#continue {
   padding: 2px;
 }
 
+.picture-word-box > .picture-div {
+  /* border: 2px solid black; */
+  width: 192px;
+  height: 192px;
+  padding: 2px;
+}
+
 #word-corral {
   border: 2px solid black;
   min-height: 40px;
