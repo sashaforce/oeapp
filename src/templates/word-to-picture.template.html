@@ -4,6 +4,9 @@ function drag(event) {
     ev.dataTransfer.setData("text", ev.target.id);
 }
 </script> -->
+<div>
+  Drag the word to the correct picture.
+</div>
 
 <div class="picture-word-box" ng-repeat="p in ctrl.pictures">
   <image ng-src="{{p.url}}"></image>
@@ -15,13 +18,17 @@ function drag(event) {
   <!-- todo will need explicit index if we randomize pictures -->
 </div>
 
-<div
-  id="word-{{$index}}"
-  class="draggable-word"
-  ng-repeat="w in ctrl.words"
-  draggable="true"
-  ondragstart="angular.element(this).scope().drag(event)">
-  {{w}}
+<div id="word-corral"
+  ondrop="angular.element(this).scope().drop(event)"
+  ondragover="angular.element(this).scope().allowDrop(event)">
+  <div
+    id="word-{{$index}}"
+    class="draggable-word"
+    ng-repeat="w in ctrl.words"
+    draggable="true"
+    ondragstart="angular.element(this).scope().drag(event)">
+    {{w}}
+  </div>
 </div>
 
 <!-- debug block -->

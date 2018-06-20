@@ -52,6 +52,14 @@ div#continue {
   padding: 2px;
 }
 
+#word-corral {
+  border: 2px solid black;
+  min-height: 40px;
+  min-width: 300px;
+  clear:both;
+  display: inline-block;
+}
+
 .draggable-word {
   /* border: 2px solid black; */
   width: 150px;
@@ -61,5 +69,5 @@ div#continue {
   background-color: #6c7ac7;
   color: #FFFFFF;
   float:left;
-  clear:both;
+  /* clear:both; */
 }

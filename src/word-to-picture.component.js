@@ -34,8 +34,6 @@ function WordToPictureController ($scope, ImageService) {
 
   // attach drag & drop methods to $scope for access via angular.element(this).scope()
 
-  // TODO: allow drop back in original spot
-  // TODO: allow retry
   // TODO: recognize correct/incorrect
   // TODO: allow continue when appropriate
 
@@ -54,7 +52,8 @@ function WordToPictureController ($scope, ImageService) {
 
   $scope.allowDrop = function (event) {
     console.log("allowDrop()");
-    if (event.target.classList.contains("word-drop") && event.target.children.length == 0) {
+    if ((event.target.classList.contains("word-drop") && event.target.children.length == 0)
+        || event.target.id === "word-corral") {
       event.preventDefault();
     }
   }
