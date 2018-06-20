@@ -8,16 +8,17 @@ function drag(event) {
   Drag the word to the correct picture.
 </div>
 
-<div class="picture-word-box" ng-repeat="p in ctrl.pictures">
-  <image ng-src="{{p.url}}"></image>
+<div class="picture-word-box" ng-repeat="p in ctrl.questions">
+  <div class="picture-div">
+    <image ng-src="{{p.imageUrl}}"></image>
+  </div>
   <div id="drop-{{$index}}"
     class="word-drop"
     ondrop="angular.element(this).scope().drop(event)"
     ondragover="angular.element(this).scope().allowDrop(event)">
   </div>
-  <!-- todo will need explicit index if we randomize pictures -->
 </div>
-
+<br>
 <div id="word-corral"
   ondrop="angular.element(this).scope().drop(event)"
   ondragover="angular.element(this).scope().allowDrop(event)">
@@ -32,6 +33,6 @@ function drag(event) {
 </div>
 
 <!-- debug block -->
-<!-- <ul>
+<ul>
   <li ng-repeat="(key, value) in ctrl">{{key}}: {{value}}</li>
-</ul> -->
+</ul>

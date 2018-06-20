@@ -14,14 +14,27 @@ function WordToPictureController ($scope, ImageService) {
 
   var ctrl = this;
 
-  ctrl.pictures = [];
+  // create picture collection for display & randomize
+  var tmpQuestions = [];
   for (var i=0; i < ctrl.exercise.pictures.length; i++) {
-    var picture = {
-      url: ImageService.getUrl(ctrl.exercise.pictures[i])
+    var question = {
+      imageUrl: ImageService.getUrl(ctrl.exercise.pictures[i])
     }
-    ctrl.pictures.push(picture);
+    if (i < ctrl.exercise.words.length)
+    {
+      question.word = ctrl.exercise.words[i];
+    } else {
+      question.word = '';
+    }
+    tmpQuestions.push(question);
   }
-  ctrl.words = ctrl.exercise.words; // TODO: randomize
+  tmpQuestions.sort(function(a, b){return 0.5 - Math.random()})
+  ctrl.questions = tmpQuestions; // don't want the view updating until after randomization
+
+  // create word list for display & randomize
+  var tmpWords = ctrl.exercise.words;
+  tmpWords.sort(function(a, b){return 0.5 - Math.random()});
+  ctrl.words = tmpWords;
 
 
   // continue should be disabled until we expressly enable it
