@@ -3,8 +3,8 @@
 
 angular.module("OeApp").controller("LessonController", LessonController);
 
-LessonController.$inject = ['lessonData', '$state', '$scope'];
-function LessonController(lessonData, $state, $scope) {
+LessonController.$inject = ['lessonData', '$state', '$scope', '$timeout'];
+function LessonController(lessonData, $state, $scope, $timeout) {
   var ctrl = this;
 
   console.log("Initializing currentExerciseIndex");
@@ -20,7 +20,8 @@ function LessonController(lessonData, $state, $scope) {
 
   $scope.$on('lesson:enableContinue', function (event, data) {
     console.log("received event", event, "data", data);
-    ctrl.continueDisabled = !(data.okToContine);
+    // timeout = hack to make sure digest happens (https://stackoverflow.com/a/18996042/865961)
+    $timeout(function(){ctrl.continueDisabled = !(data.okToContinue)});
   })
 
   ctrl.continue = function () {

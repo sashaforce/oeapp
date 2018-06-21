@@ -15,40 +15,85 @@ function WordToPictureController ($scope, ImageService) {
   var ctrl = this;
 
   // create picture collection for display & randomize
-  var tmpQuestions = [];
-  for (var i=0; i < ctrl.exercise.pictures.length; i++) {
+  var tmpQuestions = []; //tmp arrays, so view doesn't update until we're done
+  var tmpAnswers = [];
+  for (var i=0; i < ctrl.exercise.questions.length; i++) {
     var question = {
-      imageUrl: ImageService.getUrl(ctrl.exercise.pictures[i])
-    }
-    if (i < ctrl.exercise.words.length)
-    {
-      question.word = ctrl.exercise.words[i];
-    } else {
-      question.word = '';
+      id: ctrl.exercise.questions[i].imageId,
+      imageUrl: ImageService.getUrl(ctrl.exercise.questions[i].imageId)
     }
     tmpQuestions.push(question);
+
+    var answer = {
+      id: ctrl.exercise.questions[i].imageId,
+      text: ctrl.exercise.questions[i].answer
+    }
+    tmpAnswers.push(answer);
   }
-  tmpQuestions.sort(function(a, b){return 0.5 - Math.random()})
-  ctrl.questions = tmpQuestions; // don't want the view updating until after randomization
-
-  // create word list for display & randomize
-  var tmpWords = ctrl.exercise.words;
-  tmpWords.sort(function(a, b){return 0.5 - Math.random()});
-  ctrl.words = tmpWords;
-
+  tmpQuestions.sort(function(a, b){return 0.5 - Math.random()});
+  tmpAnswers.sort(function(a, b){return 0.5 - Math.random()});
+  ctrl.questions = tmpQuestions;
+  ctrl.answers = tmpAnswers; // TODO: allow for extra answers
 
   // continue should be disabled until we expressly enable it
-  // $scope.$emit("lesson:enableContinue", false);
+  $scope.$emit("lesson:enableContinue", {okToContinue: false});
 
-  ctrl.enableContinue = function (enable) {
+  ctrl.enableContinue = function (enable) { // TODO: should this be attached to ctrl?
     console.log("enableContinue()", enable);
-    $scope.$emit("lesson:enableContinue", {okToContine:enable});
+    $scope.$emit("lesson:enableContinue", {okToContinue: enable});
+  }
+
+  function isComplete() {
+    // check if all pictures have words
+    for (var i = 0; i < ctrl.questions.length; i++) {
+      // get word drop for question
+      var wordDrop = document.getElementById("drop-" + ctrl.questions[i].id);
+      // get answer collection
+      var answers = wordDrop.getElementsByClassName('draggable-word');
+      // there should only be one answer
+      if (answers.length > 1) {
+        console.log("ERROR: question " + ctrl.questions[i].id + " contains more than one answer:", answers);
+        return;
+      }
+      // if no answer for this question, then set is not complete
+      if (answers.length < 1) {
+        return false;
+      }
+    }
+    // if we get this far, then all the questions had answers
+    return true;
+  }
+
+  function isCorrect() {
+    // check if all answers are correct
+    for (var i = 0; i < ctrl.questions.length; i++) {
+      console.log("Check is correct:", ctrl.questions[i].id);
+      // get word drop for question
+      var wordDrop = document.getElementById("drop-" + ctrl.questions[i].id);
+      // get answer collection
+      var answers = wordDrop.getElementsByClassName('draggable-word');
+      // there should only be one answer
+      if (answers.length > 1) {
+        console.log("ERROR: question " + ctrl.questions[i].id + " contains more than one answer:", answers);
+        return;
+      }
+      // if no answer for this question, then set is not correct
+      if (answers.length < 1) {
+        console.log("no answer found for ", ctrl.questions[i].id);
+        return false;
+      }
+      // compare answer to correct answer
+      var answerElement = answers[0];
+      if (answerElement.getAttribute('wordId') !== ctrl.questions[i].id) {
+        return false;
+      }
+    }
+    // if we get this far, then all the questions were correct
+    console.log("All questions correct.");
+    return true;
   }
 
   // attach drag & drop methods to $scope for access via angular.element(this).scope()
-
-  // TODO: recognize correct/incorrect
-  // TODO: allow continue when appropriate
 
   $scope.drag = function (event) {
     console.log("drag()", event);
@@ -60,11 +105,14 @@ function WordToPictureController ($scope, ImageService) {
     // drop the word
     event.preventDefault();
     var data = event.dataTransfer.getData("text");
-    event.target.appendChild(document.getElementById(data));
+    console.log("drop() data:", data);
+    var draggedElement = document.getElementById(data);
+    event.target.appendChild(draggedElement);
+
+    ctrl.enableContinue((isComplete() && isCorrect()));
   }
 
   $scope.allowDrop = function (event) {
-    console.log("allowDrop()");
     if ((event.target.classList.contains("word-drop") && event.target.children.length == 0)
         || event.target.id === "word-corral") {
       event.preventDefault();

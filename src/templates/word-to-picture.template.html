@@ -8,11 +8,12 @@ function drag(event) {
   Drag the word to the correct picture.
 </div>
 
-<div class="picture-word-box" ng-repeat="p in ctrl.questions">
+<div class="picture-word-box" ng-repeat="q in ctrl.questions">
   <div class="picture-div">
-    <image ng-src="{{p.imageUrl}}"></image>
+    <image ng-src="{{q.imageUrl}}"></image>
   </div>
-  <div id="drop-{{$index}}"
+  <div id="drop-{{q.id}}"
+    wordid="{{q.id}}"
     class="word-drop"
     ondrop="angular.element(this).scope().drop(event)"
     ondragover="angular.element(this).scope().allowDrop(event)">
@@ -23,16 +24,17 @@ function drag(event) {
   ondrop="angular.element(this).scope().drop(event)"
   ondragover="angular.element(this).scope().allowDrop(event)">
   <div
-    id="word-{{$index}}"
+    id="word-{{a.id}}"
+    wordid={{a.id}}
     class="draggable-word"
-    ng-repeat="w in ctrl.words"
+    ng-repeat="a in ctrl.answers"
     draggable="true"
     ondragstart="angular.element(this).scope().drag(event)">
-    {{w}}
+    {{a.text}}
   </div>
 </div>
 
 <!-- debug block -->
-<ul>
+<!-- <ul>
   <li ng-repeat="(key, value) in ctrl">{{key}}: {{value}}</li>
-</ul>
+</ul> -->

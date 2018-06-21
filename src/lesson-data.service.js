@@ -65,14 +65,27 @@ function LessonDataService(){
   exercises.push({
     id: "day-night",
     type: "WORD-TO-PICTURE",
-    pictures: ['day', 'night'],
-    words: ['d\u00E6g', 'niht']
+    questions: [{
+      imageId: 'day',
+      answer: 'd\u00E6g'
+    },{
+      imageId: 'night',
+      answer: 'niht'
+    }]
   });
   exercises.push({
     id: "raven-eel-dog",
     type: "WORD-TO-PICTURE",
-    pictures: ['raven', 'eel', 'dog'],
-    words: ['hr\u00E6fn', '\u00E6l', 'hund']
+    questions: [{
+      imageId: 'raven',
+      answer: 'hr\u00E6fn'
+    },{
+      imageId: 'eel',
+      answer: '\u00E6l'
+    },{
+      imageId: 'dog',
+      answer: 'hund'
+    }]
   });
 
   svc.getLessons = function () {
