@@ -12,7 +12,7 @@ function LessonDataService(){
     id: "winter-comes",
     name: "Winter Cume\u00F0",
     imageId: "winter-button",
-    exercises: ['aesc-example', 'hwaet-record', 'i-example']
+    exercises: ['translate-winter', 'aesc-example', 'hwaet-record', 'i-example']
   });
   lessons.push({
     id: "natural-phenomena",
@@ -22,6 +22,16 @@ function LessonDataService(){
   });
 
   var exercises = [];
+  exercises.push({
+    id: 'translate-winter',
+    type: 'TRANSLATE-WORDS',
+    sourceLanguage: "Modern English",
+    targetLanguage: "Old English",
+    phrase: "Hey! Winter is coming.",
+    words: ["Hwaet!", "Winter", "cume\u00F0", "ist", "Hark!"],
+    answer: "Hwaet! Winter cume\u00F0",
+    audioId: "winter-comes"
+  });
   exercises.push({
     id: "aesc-example",
     type: "PHONEME",

@@ -1,0 +1,14 @@
+<div id="instructions">
+  Translate the following from {{ctrl.exercise.sourceLanguage}} to {{ctrl.exercise.targetLanguage}}.
+</div>
+
+<div id="phrase">
+  {{ctrl.exercise.phrase}}
+</div>
+
+<div id="translation">
+</div>
+
+<div id="word-corral">
+  <span class="clickable-word" ng-repeat="w in ctrl.words" ng-click="ctrl.clickWord($event)">{{w}}</span>
+</div>

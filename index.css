@@ -78,3 +78,16 @@ div#continue {
   float:left;
   /* clear:both; */
 }
+
+#translation {
+  border: 2px solid black;
+  min-height: 40px;
+  min-width: 300px;
+  clear:both;
+  display: inline-block;
+}
+
+.clickable-word {
+  background-color: #C6CDF2;
+  margin-right: 3px;
+}

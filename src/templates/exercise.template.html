@@ -10,7 +10,10 @@
   ng-if="ctrl.type === 'WORD-TO-PICTURE'"
   exercise="ctrl.exercise">
 </word-to-picture-component>
-
+<translate-with-words-component
+  ng-if="ctrl.type === 'TRANSLATE-WORDS'"
+  exercise="ctrl.exercise">
+</translate-with-words-component>
 
 <!-- debug block -->
 <!-- <ul>
