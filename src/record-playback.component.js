@@ -153,6 +153,12 @@
       request.send();
     }
 
+    ctrl.$onDestroy = function () {
+      console.log("record-playback DESTROY");
+      context.close();
+      audioContext.close();
+    }
+
   };
 
 
