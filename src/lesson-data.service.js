@@ -12,7 +12,7 @@ function LessonDataService(){
     id: "winter-comes",
     name: "Winter Cume\u00F0",
     imageId: "winter-button",
-    exercises: ['translate-winter', 'aesc-example', 'hwaet-record', 'i-example']
+    exercises: ['aesc-example', 'hwaet-record', 'i-example', 'translate-winter']
   });
   lessons.push({
     id: "natural-phenomena",
