@@ -91,3 +91,13 @@ div#continue {
   background-color: #C6CDF2;
   margin-right: 3px;
 }
+
+#progress {
+    width: 100%;
+    background-color: lightgrey;
+}
+#bar {
+    width: 1%;
+    height: 10px;
+    background-color: #6c7ac7;
+}

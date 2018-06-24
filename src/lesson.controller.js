@@ -8,7 +8,8 @@ function LessonController(lessonData, $state, $scope, $timeout) {
   var ctrl = this;
 
   console.log("Initializing currentExerciseIndex");
-  var currentExerciseIndex = 0;
+  ctrl.currentExerciseIndex = 0;
+  ctrl.totalExercises = lessonData.exercises.length;
   // BUG: reloading the page resets the index, but doesn't change the current page
   // IDEA: get current exercise from exercise component, instead of maintaining an index
   ctrl.lessonComplete = false;
@@ -25,17 +26,17 @@ function LessonController(lessonData, $state, $scope, $timeout) {
   })
 
   ctrl.continue = function () {
-    console.log("Current index: ", currentExerciseIndex);
+    console.log("Current index: ", ctrl.currentExerciseIndex);
     if (ctrl.lessonComplete) {
       // go home
       console.log("Go home");
       $state.go("home");
-    } else if (currentExerciseIndex < (lessonData.exercises.length - 1)) {
+    } else if (ctrl.currentExerciseIndex < (lessonData.exercises.length - 1)) {
       // move to next exercise
       console.log("Next exercise");
       $state.go("lesson.exercise", {
         lessonId: lessonData.id,
-        exerciseId: lessonData.exercises[++currentExerciseIndex]
+        exerciseId: lessonData.exercises[++ctrl.currentExerciseIndex]
       });
     } else {
       // move to "lesson complete"
