@@ -24,9 +24,10 @@
 
     ctrl.$onChanges = function (changesObj) {
       console.log(changesObj);
-      if ("currentExercise" in changesObj) {
-        setBarWidth();
-      }
+      // if ("currentExercise" in changesObj) {
+      // As long as the only possible incoming changes are total & current exercise, we will always want to update this
+      setBarWidth();
+      // }
     }
   }
 
