@@ -9,6 +9,12 @@ function LessonDataService(){
 
   var lessons = [];
   lessons.push({
+    id: "test",
+    name:"TEST",
+    imageId: "questionmark-button",
+    exercises: ['aesc-example', 'i-example', 'eth-example']
+  });
+  lessons.push({
     id: "winter-comes",
     name: "Winter Cume\u00F0",
     imageId: "winter-button",
