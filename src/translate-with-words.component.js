@@ -13,16 +13,9 @@
   function TranslateWithWords($scope, AudioDataService) {
     var ctrl = this;
 
-    // TODO: use audio component for phrase
-
     var tmpWords = ctrl.exercise.words;
     tmpWords.sort(function(a, b){return 0.5 - Math.random()});
     ctrl.words = tmpWords;
-
-    ctrl.audioUrl = AudioDataService.getUrl(ctrl.exercise.audioId);
-
-    // continue should be disabled until we expressly enable it
-    $scope.$emit("lesson:enableContinue", {okToContinue: false});
 
     ctrl.clickWord = function (event){
       console.log("clickWord(event): ", event);
@@ -34,15 +27,15 @@
         document.getElementById('word-corral').appendChild(event.target);
       }
 
-      enableContinue(isCorrect());
+      $scope.$emit("lesson:enableCheck");
     }
 
-    function enableContinue(enable) {
-      console.log("enableContinue()", enable);
-      $scope.$emit("lesson:enableContinue", {okToContinue: enable});
-    }
+    $scope.$on('lesson:check', function (event, data) {
+      console.log("received event", event, "data", data);
+      checkCorrect();
+    });
 
-    function isCorrect() {
+    function checkCorrect() {
       // iterate over children of translation and construct user's answer
       var translationElements = document.getElementById('translation').children;
       var userAnswer = "";
@@ -52,7 +45,21 @@
         }
         userAnswer += translationElements[i].innerText;
       }
-      return (userAnswer === ctrl.exercise.answer);
+      if (userAnswer === ctrl.exercise.answer) {
+        handleCorrect();
+      } else {
+        handleIncorrect();
+      }
+    }
+
+    function handleCorrect() {
+      alert("Correct!");
+      $scope.$emit("lesson:enableContinue");
+    }
+
+    function handleIncorrect() {
+      alert("Wrong :(");
+      $scope.$emit("lesson:enableContinue");
     }
   } // TranslateWithWords
 

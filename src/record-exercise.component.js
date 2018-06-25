@@ -16,11 +16,16 @@ function RecordExerciseController (AudioDataService, $scope) {
   ctrl.sampleAudioUrl = AudioDataService.getUrl(ctrl.exercise.audioId);
 
   // continue should be disabled until we expressly enable it
-  $scope.$emit("lesson:enableContinue", {okToContinue: false});
+  $scope.$emit("lesson:disableContinue");
 
   ctrl.enableContinue = function (enable) {
     console.log("enableContinue()", enable);
-    $scope.$emit("lesson:enableContinue", {okToContinue: enable});
+    if (enable) {
+      $scope.$emit("lesson:enableContinue");
+    } else {
+      $scope.$emit("lesson:disableContinue");
+    }
+
   }
 }
 

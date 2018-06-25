@@ -35,9 +35,6 @@ function WordToPictureController ($scope, ImageService) {
   ctrl.questions = tmpQuestions;
   ctrl.answers = tmpAnswers; // TODO: allow for extra answers
 
-  // continue should be disabled until we expressly enable it
-  $scope.$emit("lesson:enableContinue", {okToContinue: false});
-
   ctrl.enableContinue = function (enable) { // TODO: should this be attached to ctrl?
     console.log("enableContinue()", enable);
     $scope.$emit("lesson:enableContinue", {okToContinue: enable});
@@ -93,6 +90,16 @@ function WordToPictureController ($scope, ImageService) {
     return true;
   }
 
+  $scope.$on('lesson:check', function (event, data) {
+    console.log("received event", event, "data", data);
+    if (isCorrect()) {
+      alert("Correct!")
+    } else {
+      alert("Wrong.")
+    }
+    $scope.$emit("lesson:enableContinue");
+  });
+
   // attach drag & drop methods to $scope for access via angular.element(this).scope()
 
   $scope.drag = function (event) {
@@ -109,7 +116,8 @@ function WordToPictureController ($scope, ImageService) {
     var draggedElement = document.getElementById(data);
     event.target.appendChild(draggedElement);
 
-    ctrl.enableContinue((isComplete() && isCorrect()));
+    //ctrl.enableContinue((isComplete() && isCorrect()));
+    $scope.$emit("lesson:enableCheck");
   }
 
   $scope.allowDrop = function (event) {

@@ -10,13 +10,15 @@
   })
   .controller('PhonemeController', PhonemeController);
 
-  PhonemeController.$inject = ['ImageService', 'AudioDataService'];
-  function PhonemeController(ImageService, AudioDataService) {
+  PhonemeController.$inject = ['ImageService', 'AudioDataService', '$scope'];
+  function PhonemeController(ImageService, AudioDataService, $scope) {
     var ctrl = this;
 
     ctrl.listenButtonUrl = ImageService.getUrl("speaker-button-sm");
     ctrl.imageUrl = ImageService.getUrl(ctrl.exercise.imageId);
     ctrl.audioUrl = AudioDataService.getUrl(ctrl.exercise.audioId);
+
+    $scope.$emit("lesson:enableContinue");
 
   };
 }());

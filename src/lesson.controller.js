@@ -17,15 +17,66 @@ function LessonController(lessonData, $state, $scope, $timeout) {
   ctrl.id = lessonData.id;
   ctrl.name = lessonData.name;
 
-  ctrl.continueDisabled = false;
+  // default state: check button disabled
+  disableCheck();
+
+  $scope.$on('lesson:disableCheck', function (event, data) {
+    console.log("received event", event, "data", data);
+    // timeout = hack to make sure digest happens (https://stackoverflow.com/a/18996042/865961)
+    $timeout(disableCheck);
+  });
+
+  $scope.$on('lesson:enableCheck', function (event, data) {
+    console.log("received event", event, "data", data);
+    $timeout(enableCheck);
+  });
 
   $scope.$on('lesson:enableContinue', function (event, data) {
     console.log("received event", event, "data", data);
-    // timeout = hack to make sure digest happens (https://stackoverflow.com/a/18996042/865961)
-    $timeout(function(){ctrl.continueDisabled = !(data.okToContinue)});
-  })
+    $timeout(enableContinue);
+  });
 
-  ctrl.continue = function () {
+  $scope.$on('lesson:disableContinue', function (event, data) {
+    console.log("received event", event, "data", data);
+    $timeout(disableContinue);
+  });
+
+  function disableCheck() {
+    console.log("disableCheck()");
+    ctrl.buttonText = "Check";
+    ctrl.buttonDisabled = true;
+  }
+
+  function enableCheck() {
+    console.log("enableCheck()");
+    ctrl.buttonText = "Check";
+    ctrl.buttonDisabled = false;
+
+  }
+
+  function enableContinue() {
+    console.log("enableContinue()");
+    ctrl.buttonText = "Continue";
+    ctrl.buttonDisabled = false;
+  }
+
+  function disableContinue() {
+    console.log("enableContinue()");
+    ctrl.buttonText = "Continue";
+    ctrl.buttonDisabled = true;
+  }
+
+  ctrl.next = function () {
+    if (ctrl.buttonText === "Continue") { // TODO: fix this hack!!!
+      // continue to next exercise
+      doContinue();
+    } else {
+      // tell exercise to check if correct
+      $scope.$broadcast("lesson:check");
+    }
+  }
+
+  function doContinue() {
     console.log("Current index: ", ctrl.currentExerciseIndex);
     if (ctrl.lessonComplete) {
       // go home
@@ -34,6 +85,7 @@ function LessonController(lessonData, $state, $scope, $timeout) {
     } else if (ctrl.currentExerciseIndex < (lessonData.exercises.length - 1)) {
       // move to next exercise
       console.log("Next exercise");
+      disableCheck();
       $state.go("lesson.exercise", {
         lessonId: lessonData.id,
         exerciseId: lessonData.exercises[++ctrl.currentExerciseIndex]
