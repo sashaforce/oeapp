@@ -12,7 +12,7 @@ function LessonDataService(){
     id: "test",
     name:"TEST",
     imageId: "questionmark-button",
-    exercises: ['aesc-example', 'i-example', 'eth-example']
+    exercises: ['i-example', 'aesc-example',  'eth-example']
   });
   lessons.push({
     id: "winter-comes",
@@ -126,6 +126,7 @@ function LessonDataService(){
   };
 
   svc.getExercise = function (id) {
+    console.log("getExercise()", id);
     for (var x=0; x < exercises.length; x++) {
       var exercise = exercises[x];
       if (exercise.id === id) {
@@ -134,6 +135,22 @@ function LessonDataService(){
     }
     return null;
   };
+
+  svc.getExercisesForLesson = function (id) {
+    console.log("getExercisesForLesson()", id);
+    var lesson = svc.getLesson(id);
+    var exercises = [];
+    for (var x=0; x < lesson.exercises.length; x++) {
+      var exerciseId = lesson.exercises[x];
+      exercises.push(svc.getExercise(exerciseId));
+    }
+    console.log("return exercises", exercises);
+    return exercises;
+  }
+
+  svc.isInfoOnly = function (exerciseType) {
+    return (exerciseType === "PHONEME");
+  }
 
 }; // LessonDataService
 

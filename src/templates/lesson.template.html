@@ -1,11 +1,20 @@
 <progress-bar-component current-exercise="ctrl.currentExerciseIndex + 1" total-exercises="ctrl.totalExercises">
 </progress-bar-component>
 
-<div>
+<!-- <div>
   <ui-view></ui-view>
-<div id="continue">
-<button id="continue-button" ng-click="ctrl.next()" ng-disabled="ctrl.buttonDisabled">{{ctrl.buttonText}}</button>
+</div> -->
+
+<div>
+  <exercise-component
+    exercise="ctrl.getCurrentExercise()"
+    do-continue="ctrl.doContinue()">
+  </exerciseComponent>
 </div>
+
+<!-- <div id="continue">
+<button id="continue-button" ng-click="ctrl.next()" ng-disabled="ctrl.buttonDisabled">{{ctrl.buttonText}}</button>
+</div> -->
 
 <!-- debug block -->
 <!-- <ul>

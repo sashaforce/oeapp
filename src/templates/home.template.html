@@ -6,7 +6,7 @@
 </div><!-- featureBar -->
 
 <div id="lessons">
-    <a ng-repeat="l in ctrl.lessons" ui-sref="lesson.exercise({lessonId:l.id, exerciseId: l.exercises[0]})">
+    <a ng-repeat="l in ctrl.lessons" ui-sref="lesson({lessonId:l.id})">
       <div id="lesson-{{l.id}}" class="lessonDiv">
       <input type="image" src={{l.imageUrl}}></input>
       <br>{{l.name}}

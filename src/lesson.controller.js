@@ -3,9 +3,10 @@
 
 angular.module("OeApp").controller("LessonController", LessonController);
 
-LessonController.$inject = ['lessonData', '$state', '$scope', '$timeout'];
-function LessonController(lessonData, $state, $scope, $timeout) {
+LessonController.$inject = ['lessonData', 'exercises', '$state', '$scope', '$timeout'];
+function LessonController(lessonData, exercises, $state, $scope, $timeout) {
   var ctrl = this;
+  console.log(ctrl);
 
   console.log("Initializing currentExerciseIndex");
   ctrl.currentExerciseIndex = 0;
@@ -18,74 +19,80 @@ function LessonController(lessonData, $state, $scope, $timeout) {
   ctrl.name = lessonData.name;
 
   // default state: check button disabled
-  disableCheck();
+  // disableCheck();
 
-  $scope.$on('lesson:disableCheck', function (event, data) {
-    console.log("received event", event, "data", data);
-    // timeout = hack to make sure digest happens (https://stackoverflow.com/a/18996042/865961)
-    $timeout(disableCheck);
-  });
-
-  $scope.$on('lesson:enableCheck', function (event, data) {
-    console.log("received event", event, "data", data);
-    $timeout(enableCheck);
-  });
-
-  $scope.$on('lesson:enableContinue', function (event, data) {
-    console.log("received event", event, "data", data);
-    $timeout(enableContinue);
-  });
-
-  $scope.$on('lesson:disableContinue', function (event, data) {
-    console.log("received event", event, "data", data);
-    $timeout(disableContinue);
-  });
-
-  function disableCheck() {
-    console.log("disableCheck()");
-    ctrl.buttonText = "Check";
-    ctrl.buttonDisabled = true;
+  ctrl.getCurrentExercise = function () {
+    return exercises[ctrl.currentExerciseIndex];
   }
 
-  function enableCheck() {
-    console.log("enableCheck()");
-    ctrl.buttonText = "Check";
-    ctrl.buttonDisabled = false;
+  // $scope.$on('lesson:disableCheck', function (event, data) {
+  //   console.log("received event", event, "data", data);
+  //   // timeout = hack to make sure digest happens (https://stackoverflow.com/a/18996042/865961)
+  //   $timeout(disableCheck);
+  // });
+  //
+  // $scope.$on('lesson:enableCheck', function (event, data) {
+  //   console.log("received event", event, "data", data);
+  //   $timeout(enableCheck);
+  // });
+  //
+  // $scope.$on('lesson:enableContinue', function (event, data) {
+  //   console.log("received event", event, "data", data);
+  //   $timeout(enableContinue);
+  // });
+  //
+  // $scope.$on('lesson:disableContinue', function (event, data) {
+  //   console.log("received event", event, "data", data);
+  //   $timeout(disableContinue);
+  // });
 
-  }
+  // function disableCheck() {
+  //   console.log("disableCheck()");
+  //   ctrl.buttonText = "Check";
+  //   ctrl.buttonDisabled = true;
+  // }
+  //
+  // function enableCheck() {
+  //   console.log("enableCheck()");
+  //   ctrl.buttonText = "Check";
+  //   ctrl.buttonDisabled = false;
+  //
+  // }
+  //
+  // function enableContinue() {
+  //   console.log("enableContinue()");
+  //   ctrl.buttonText = "Continue";
+  //   ctrl.buttonDisabled = false;
+  // }
+  //
+  // function disableContinue() {
+  //   console.log("enableContinue()");
+  //   ctrl.buttonText = "Continue";
+  //   ctrl.buttonDisabled = true;
+  // }
 
-  function enableContinue() {
-    console.log("enableContinue()");
-    ctrl.buttonText = "Continue";
-    ctrl.buttonDisabled = false;
-  }
+  // ctrl.next = function () {
+  //   if (ctrl.buttonText === "Continue") { // TODO: fix this hack!!!
+  //     // continue to next exercise
+  //     doContinue();
+  //   } else {
+  //     // tell exercise to check if correct
+  //     $scope.$broadcast("lesson:check");
+  //   }
+  // }
 
-  function disableContinue() {
-    console.log("enableContinue()");
-    ctrl.buttonText = "Continue";
-    ctrl.buttonDisabled = true;
-  }
-
-  ctrl.next = function () {
-    if (ctrl.buttonText === "Continue") { // TODO: fix this hack!!!
-      // continue to next exercise
-      doContinue();
-    } else {
-      // tell exercise to check if correct
-      $scope.$broadcast("lesson:check");
-    }
-  }
-
-  function doContinue() {
+  ctrl.doContinue = function () {
     console.log("Current index: ", ctrl.currentExerciseIndex);
-    if (ctrl.lessonComplete) {
-      // go home
-      console.log("Go home");
-      $state.go("home");
-    } else if (ctrl.currentExerciseIndex < (lessonData.exercises.length - 1)) {
+    // TODO: update to next index and then work with that
+    // if (ctrl.lessonComplete) {
+    //   // go home
+    //   console.log("Go home");
+    //   $state.go("home");
+    // } else
+    if (ctrl.currentExerciseIndex < (lessonData.exercises.length - 1)) {
       // move to next exercise
       console.log("Next exercise");
-      disableCheck();
+      // disableCheck();
       $state.go("lesson.exercise", {
         lessonId: lessonData.id,
         exerciseId: lessonData.exercises[++ctrl.currentExerciseIndex]
@@ -94,7 +101,7 @@ function LessonController(lessonData, $state, $scope, $timeout) {
       // move to "lesson complete"
       console.log("Lesson Complete");
       ctrl.lessonComplete = true;
-      $state.go("lesson.complete");
+      $state.go("lessonComplete");
     }
   }
 }

@@ -18,7 +18,5 @@
     ctrl.imageUrl = ImageService.getUrl(ctrl.exercise.imageId);
     ctrl.audioUrl = AudioDataService.getUrl(ctrl.exercise.audioId);
 
-    $scope.$emit("lesson:enableContinue");
-
   };
 }());
