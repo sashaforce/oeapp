@@ -11,7 +11,6 @@ angular.module('OeApp')
   }
 })
 .controller('ExerciseController', ExerciseController);
-// TODO: Do we really need this component? Can we not put a div with all the exercise types right into the lesson component? It seems like this component is tightly coupled with the specific exercises (providing check/continue buttons), and yet infringeing on responsibilities that make sense to be in the lesson (movement from exercise to exercise, keeping track of progress)
 
 ExerciseController.$inject = ['LessonDataService'];
 function ExerciseController(LessonDataService){
