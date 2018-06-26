@@ -9,7 +9,8 @@
   </record-exercise-component>
   <word-to-picture-component
     ng-if="ctrl.exercise.type === 'WORD-TO-PICTURE'"
-    exercise="ctrl.exercise">
+    exercise="ctrl.exercise"
+    user-action="ctrl.onUserAction(dirty)">
   </word-to-picture-component>
   <translate-with-words-component
     ng-if="ctrl.exercise.type === 'TRANSLATE-WORDS'"
@@ -33,6 +34,6 @@
 </div>
 
 <!-- debug block -->
-<!-- <ul>
+<ul>
   <li ng-repeat="(key, value) in ctrl">{{key}}: {{value}}</li>
-</ul> -->
+</ul>

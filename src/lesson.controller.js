@@ -3,7 +3,7 @@
 
 angular.module("OeApp").controller("LessonController", LessonController);
 
-LessonController.$inject = ['exercises', '$state']; // QUESTION: are all these still used?
+LessonController.$inject = ['exercises', '$state'];
 function LessonController(exercises, $state) {
   var ctrl = this;
   console.log(ctrl);

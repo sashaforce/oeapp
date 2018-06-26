@@ -5,7 +5,8 @@ angular.module('OeApp').component('wordToPictureComponent', {
   templateUrl: 'src/templates/word-to-picture.template.html',
   controller: 'WordToPictureController as ctrl',
   bindings: {
-    exercise: '<'
+    exercise: '<',
+    userAction: '&'
   }
 }).controller('WordToPictureController', WordToPictureController);
 
@@ -35,31 +36,31 @@ function WordToPictureController ($scope, ImageService) {
   ctrl.questions = tmpQuestions;
   ctrl.answers = tmpAnswers; // TODO: allow for extra answers
 
-  ctrl.enableContinue = function (enable) { // TODO: should this be attached to ctrl?
-    console.log("enableContinue()", enable);
-    $scope.$emit("lesson:enableContinue", {okToContinue: enable});
-  }
+  // ctrl.enableContinue = function (enable) { // TODO: should this be attached to ctrl?
+  //   console.log("enableContinue()", enable);
+  //   $scope.$emit("lesson:enableContinue", {okToContinue: enable});
+  // }
 
-  function isComplete() {
-    // check if all pictures have words
-    for (var i = 0; i < ctrl.questions.length; i++) {
-      // get word drop for question
-      var wordDrop = document.getElementById("drop-" + ctrl.questions[i].id);
-      // get answer collection
-      var answers = wordDrop.getElementsByClassName('draggable-word');
-      // there should only be one answer
-      if (answers.length > 1) {
-        console.log("ERROR: question " + ctrl.questions[i].id + " contains more than one answer:", answers);
-        return;
-      }
-      // if no answer for this question, then set is not complete
-      if (answers.length < 1) {
-        return false;
-      }
-    }
-    // if we get this far, then all the questions had answers
-    return true;
-  }
+  // function isComplete() {
+  //   // check if all pictures have words
+  //   for (var i = 0; i < ctrl.questions.length; i++) {
+  //     // get word drop for question
+  //     var wordDrop = document.getElementById("drop-" + ctrl.questions[i].id);
+  //     // get answer collection
+  //     var answers = wordDrop.getElementsByClassName('draggable-word');
+  //     // there should only be one answer
+  //     if (answers.length > 1) {
+  //       console.log("ERROR: question " + ctrl.questions[i].id + " contains more than one answer:", answers);
+  //       return;
+  //     }
+  //     // if no answer for this question, then set is not complete
+  //     if (answers.length < 1) {
+  //       return false;
+  //     }
+  //   }
+  //   // if we get this far, then all the questions had answers
+  //   return true;
+  // }
 
   function isCorrect() {
     // check if all answers are correct
@@ -90,15 +91,15 @@ function WordToPictureController ($scope, ImageService) {
     return true;
   }
 
-  $scope.$on('lesson:check', function (event, data) {
-    console.log("received event", event, "data", data);
-    if (isCorrect()) {
-      alert("Correct!")
-    } else {
-      alert("Wrong.")
-    }
-    $scope.$emit("lesson:enableContinue");
-  });
+  // $scope.$on('lesson:check', function (event, data) {
+  //   console.log("received event", event, "data", data);
+  //   if (isCorrect()) {
+  //     alert("Correct!")
+  //   } else {
+  //     alert("Wrong.")
+  //   }
+  //   $scope.$emit("lesson:enableContinue");
+  // });
 
   // attach drag & drop methods to $scope for access via angular.element(this).scope()
 
@@ -117,7 +118,9 @@ function WordToPictureController ($scope, ImageService) {
     event.target.appendChild(draggedElement);
 
     //ctrl.enableContinue((isComplete() && isCorrect()));
-    $scope.$emit("lesson:enableCheck");
+    //$scope.$emit("lesson:enableCheck");
+    ctrl.userAction({dirty:true}); // TODO: dirty=false if restored to original state
+
   }
 
   $scope.allowDrop = function (event) {
