@@ -6,7 +6,7 @@ angular.module('OeApp')
   templateUrl: 'src/templates/exercise.template.html',
   controller: 'ExerciseController as ctrl',
   bindings: {
-    exercise: '<',
+    exercise: '<', // if we add more bindings, onChanges will need to change
     doContinue: '&'
   }
 })

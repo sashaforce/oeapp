@@ -5,7 +5,7 @@ angular.module('OeApp').component('wordToPictureComponent', {
   templateUrl: 'src/templates/word-to-picture.template.html',
   controller: 'WordToPictureController as ctrl',
   bindings: {
-    exercise: '<',
+    exercise: '<', // if we add more bindings, onChanges will need to change
     userAction: '&'
   }
 }).controller('WordToPictureController', WordToPictureController);
