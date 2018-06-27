@@ -18,6 +18,13 @@
   </translate-with-words-component>
 </div>
 
+<div ng-if="ctrl.feedbackVisible()">
+  <feedback-component
+    is-correct="ctrl.isCorrect"
+    message="ctrl.message">
+  </feedback-component>
+</div>
+
 <div>
   <button id="check-button"
     ng-click="ctrl.doCheck()"
@@ -34,6 +41,6 @@
 </div>
 
 <!-- debug block -->
-<ul>
+<!-- <ul>
   <li ng-repeat="(key, value) in ctrl">{{key}}: {{value}}</li>
-</ul>
+</ul> -->

@@ -87,7 +87,8 @@ function LessonDataService(){
     },{
       imageId: 'night',
       answer: 'niht'
-    }]
+    }],
+    messageWrong: "Hint: The Old English word for 'night' is 'niht'."
   });
   exercises.push({
     id: "raven-eel-dog",

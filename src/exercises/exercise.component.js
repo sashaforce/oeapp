@@ -25,30 +25,27 @@ function ExerciseController(LessonDataService, $scope){
     NOFEEDBACK: 4 // no feedback required - we jump straight to showing "continue" (e.g. for info-only slides)
   });
 
-  var isCorrect;
-  var state;
-
   ctrl.$onChanges = function (changesObj) {
     console.log("$onChanges()", changesObj);
     // exercise has changed - initialize everything
 
-    isCorrect = false; // set to true when user clicks "check" on correct answer
+    ctrl.isCorrect = false; // set to true when user clicks "check" on correct answer
     ctrl.message = ""; // optional message included in user feedback
 
     // initialize state
     if (LessonDataService.isInfoOnly(ctrl.exercise.type)) {
-      state = State.NOFEEDBACK;
+      ctrl.state = State.NOFEEDBACK;
     } else {
-      state = State.NEW; // QUESTION: Will we need to explicitly watch state?
+      ctrl.state = State.NEW; // QUESTION: Will we need to explicitly watch state?
     }
   }
 
   ctrl.checkDisabled = function () {
-    return (state === State.NEW);
+    return (ctrl.state === State.NEW);
   }
 
   ctrl.checkVisible = function () {
-    return (state === State.NEW) || (state === State.DIRTY) || (state == State.CORRECT);
+    return (ctrl.state === State.NEW) || (ctrl.state === State.DIRTY) || (ctrl.state == State.CORRECT);
   }
 
   ctrl.continueDisabled = function () {
@@ -56,7 +53,11 @@ function ExerciseController(LessonDataService, $scope){
   }
 
   ctrl.continueVisible = function () {
-    return (state === State.FEEDBACK) || (state === State.NOFEEDBACK);
+    return (ctrl.state === State.FEEDBACK) || (ctrl.state === State.NOFEEDBACK);
+  }
+
+  ctrl.feedbackVisible = function () {
+    return (ctrl.state === State.FEEDBACK);
   }
 
   ctrl.onUserAction = function (dirty, correct, message) {
@@ -65,21 +66,24 @@ function ExerciseController(LessonDataService, $scope){
     // dirty = false if answer is in same state as new
     console.log("onUserAction()", dirty, correct, message);
     if (correct) {
-      $scope.$apply(function () {state = State.CORRECT;});
+      $scope.$apply(function () {ctrl.state = State.CORRECT;});
     } else { // not correct
       if (dirty) {
-        $scope.$apply(function () {state = State.DIRTY;});
+        $scope.$apply(function () {ctrl.state = State.DIRTY;});
       } else {
-        $scope.$apply(function () {state = State.NEW;});  // TODO Test this case
+        $scope.$apply(function () {ctrl.state = State.NEW;});  // TODO Test this case
       }
     }
-    ctrl.message = message;
+    $scope.$apply(function () {
+      ctrl.message = message;
+      ctrl.isCorrect = correct;
+    });
   }
 
   ctrl.doCheck = function () {
-    isCorrect = (state === State.CORRECT);
+    ctrl.isCorrect = (ctrl.state === State.CORRECT);
     // $scope.$apply(function () {
-      state = State.FEEDBACK;
+      ctrl.state = State.FEEDBACK;
     //});
   }
 

@@ -122,12 +122,19 @@ function WordToPictureController ($scope, ImageService) {
 
     //ctrl.enableContinue((isComplete() && isCorrect()));
     //$scope.$emit("lesson:enableCheck");
+    // TODO: make function: update parent
+    var correct = isCorrect();
+    var message = "";
+    if (correct) {
+      message = ctrl.exercise.messageRight;
+    } else {
+      message = ctrl.exercise.messageWrong;
+    }
     ctrl.userAction({
       dirty: true, // TODO: dirty=false if restored to original state
-      correct: isCorrect(),
-      message: "Test Message"
+      correct: correct,
+      message: message
     });
-
   }
 
   $scope.allowDrop = function (event) {

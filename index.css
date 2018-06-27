@@ -84,7 +84,7 @@ div#continue {
   min-height: 40px;
   min-width: 300px;
   clear:both;
-  display: inline-block;
+  display: inline-block; /* this is here to make it resize to contents, but messes with clear:both */
 }
 
 .draggable-word {
@@ -120,4 +120,16 @@ div#continue {
     width: 1%;
     height: 10px;
     background-color: #6c7ac7;
+}
+
+#feedback {
+  clear:both;
+}
+
+#feedback.correct {
+  background-color: green;
+}
+
+#feedback.incorrect {
+  background-color: red;
 }
