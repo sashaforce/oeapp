@@ -10,7 +10,7 @@
   <word-to-picture-component
     ng-if="ctrl.exercise.type === 'WORD-TO-PICTURE'"
     exercise="ctrl.exercise"
-    user-action="ctrl.onUserAction(dirty)">
+    user-action="ctrl.onUserAction(dirty, correct, message)">
   </word-to-picture-component>
   <translate-with-words-component
     ng-if="ctrl.exercise.type === 'TRANSLATE-WORDS'"

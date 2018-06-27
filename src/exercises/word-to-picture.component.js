@@ -15,26 +15,29 @@ function WordToPictureController ($scope, ImageService) {
 
   var ctrl = this;
 
-  // create picture collection for display & randomize
-  var tmpQuestions = []; //tmp arrays, so view doesn't update until we're done
-  var tmpAnswers = [];
-  for (var i=0; i < ctrl.exercise.questions.length; i++) {
-    var question = {
-      id: ctrl.exercise.questions[i].imageId,
-      imageUrl: ImageService.getUrl(ctrl.exercise.questions[i].imageId)
-    }
-    tmpQuestions.push(question);
+  ctrl.$onChanges = function (changesObj) {
 
-    var answer = {
-      id: ctrl.exercise.questions[i].imageId,
-      text: ctrl.exercise.questions[i].answer
+    // create picture collection for display & randomize
+    var tmpQuestions = []; //tmp arrays, so view doesn't update until we're done
+    var tmpAnswers = [];
+    for (var i=0; i < ctrl.exercise.questions.length; i++) {
+      var question = {
+        id: ctrl.exercise.questions[i].imageId,
+        imageUrl: ImageService.getUrl(ctrl.exercise.questions[i].imageId)
+      }
+      tmpQuestions.push(question);
+
+      var answer = {
+        id: ctrl.exercise.questions[i].imageId,
+        text: ctrl.exercise.questions[i].answer
+      }
+      tmpAnswers.push(answer);
     }
-    tmpAnswers.push(answer);
+    tmpQuestions.sort(function(a, b){return 0.5 - Math.random()});
+    tmpAnswers.sort(function(a, b){return 0.5 - Math.random()});
+    ctrl.questions = tmpQuestions;
+    ctrl.answers = tmpAnswers; // TODO: allow for extra answers
   }
-  tmpQuestions.sort(function(a, b){return 0.5 - Math.random()});
-  tmpAnswers.sort(function(a, b){return 0.5 - Math.random()});
-  ctrl.questions = tmpQuestions;
-  ctrl.answers = tmpAnswers; // TODO: allow for extra answers
 
   // ctrl.enableContinue = function (enable) { // TODO: should this be attached to ctrl?
   //   console.log("enableContinue()", enable);
@@ -119,7 +122,11 @@ function WordToPictureController ($scope, ImageService) {
 
     //ctrl.enableContinue((isComplete() && isCorrect()));
     //$scope.$emit("lesson:enableCheck");
-    ctrl.userAction({dirty:true}); // TODO: dirty=false if restored to original state
+    ctrl.userAction({
+      dirty: true, // TODO: dirty=false if restored to original state
+      correct: isCorrect(),
+      message: "Test Message"
+    });
 
   }
 
