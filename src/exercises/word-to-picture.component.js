@@ -130,10 +130,12 @@ function WordToPictureController ($scope, ImageService) {
     } else {
       message = ctrl.exercise.messageWrong;
     }
-    ctrl.userAction({
-      dirty: true, // TODO: dirty=false if restored to original state
-      correct: correct,
-      message: message
+    $scope.$apply(function () {
+      ctrl.userAction({
+        dirty: true, // TODO: dirty=false if restored to original state
+        correct: correct,
+        message: message
+      });
     });
   }
 

@@ -5,7 +5,8 @@
     templateUrl: 'src/templates/translate-with-words.template.html',
     controller: 'TranslateWithWords as ctrl',
     bindings: {
-      exercise: '<'
+      exercise: '<',
+      userAction: '&'
     }
   }).controller('TranslateWithWords', TranslateWithWords);
 
@@ -13,9 +14,11 @@
   function TranslateWithWords($scope, AudioDataService) {
     var ctrl = this;
 
-    var tmpWords = ctrl.exercise.words;
-    tmpWords.sort(function(a, b){return 0.5 - Math.random()});
-    ctrl.words = tmpWords;
+    ctrl.$onChanges = function (changesObj) {
+      var tmpWords = ctrl.exercise.words;
+      tmpWords.sort(function(a, b){return 0.5 - Math.random()});
+      ctrl.words = tmpWords;
+    }
 
     ctrl.clickWord = function (event){
       console.log("clickWord(event): ", event);
@@ -27,15 +30,25 @@
         document.getElementById('word-corral').appendChild(event.target);
       }
 
-      $scope.$emit("lesson:enableCheck");
+      updateExerciseComponent();
     }
 
-    $scope.$on('lesson:check', function (event, data) {
-      console.log("received event", event, "data", data);
-      checkCorrect();
-    });
+    function updateExerciseComponent() {
+      var correct = isCorrect();
+      var message = "";
+      if (correct) {
+        message = ctrl.exercise.messageRight;
+      } else {
+        message = ctrl.exercise.messageWrong;
+      }
+      ctrl.userAction({
+        dirty: true, // TODO: dirty=false if restored to original state
+        correct: correct,
+        message: message
+      });
+    }
 
-    function checkCorrect() {
+    function isCorrect() {
       // iterate over children of translation and construct user's answer
       var translationElements = document.getElementById('translation').children;
       var userAnswer = "";
@@ -45,11 +58,7 @@
         }
         userAnswer += translationElements[i].innerText;
       }
-      if (userAnswer === ctrl.exercise.answer) {
-        handleCorrect();
-      } else {
-        handleIncorrect();
-      }
+      return (userAnswer === ctrl.exercise.answer);
     }
 
     function handleCorrect() {

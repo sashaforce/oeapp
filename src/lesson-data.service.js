@@ -12,7 +12,7 @@ function LessonDataService(){
     id: "test",
     name:"TEST",
     imageId: "questionmark-button",
-    exercises: ['i-example', 'aesc-example',  'eth-example']
+    exercises: ['translate-winter', 'day-night', 'i-example', 'aesc-example']
   });
   lessons.push({
     id: "winter-comes",
@@ -49,17 +49,17 @@ function LessonDataService(){
     audioId: "ael",
     imageId: "eel"
   });
-  exercises.push({
-    id: "eth-example",
-    type: "PHONEME",
-    description: "'\u00F0' is called 'eth'. It is pronounced like 'th' in Modern English.",
-    letter: "\u00F0",
-    phoneticSymbol: "/\u03B8/ /\u00F0/",
-    sampleWordOE: "mo\u00F0or",
-    sampleWordModE: "mother",
-    audioId: "mothor",
-    imageId: "mother"
-  });
+  // exercises.push({
+  //   id: "eth-example",
+  //   type: "PHONEME",
+  //   description: "'\u00F0' is called 'eth'. It is pronounced like 'th' in Modern English.",
+  //   letter: "\u00F0",
+  //   phoneticSymbol: "/\u03B8/ /\u00F0/",
+  //   sampleWordOE: "mo\u00F0or",
+  //   sampleWordModE: "mother",
+  //   audioId: "mothor",
+  //   imageId: "mother"
+  // });
   exercises.push({
     id: "i-example",
     type: "PHONEME",

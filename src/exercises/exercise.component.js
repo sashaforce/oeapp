@@ -66,18 +66,24 @@ function ExerciseController(LessonDataService, $scope){
     // dirty = false if answer is in same state as new
     console.log("onUserAction()", dirty, correct, message);
     if (correct) {
-      $scope.$apply(function () {ctrl.state = State.CORRECT;});
+      // $scope.$apply(function () {
+        ctrl.state = State.CORRECT;
+      // });
     } else { // not correct
       if (dirty) {
-        $scope.$apply(function () {ctrl.state = State.DIRTY;});
+        // $scope.$apply(function () {
+          ctrl.state = State.DIRTY;
+        // });
       } else {
-        $scope.$apply(function () {ctrl.state = State.NEW;});  // TODO Test this case
+        // $scope.$apply(function () {
+          ctrl.state = State.NEW;
+        // });  // TODO Test this case
       }
     }
-    $scope.$apply(function () {
+    // $scope.$apply(function () {
       ctrl.message = message;
       ctrl.isCorrect = correct;
-    });
+    // });
   }
 
   ctrl.doCheck = function () {
