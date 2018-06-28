@@ -12,6 +12,8 @@
   })
   .controller('SamplePlayerController', SamplePlayerController);
 
+  // BUG: If two phonemes are used in succession in a lesson, and you click to listen to the second one too quickly, then it gets stuck with the audio of the first phoneme
+
   SamplePlayerController.$inject = [];
   function SamplePlayerController() {
     var ctrl = this;
