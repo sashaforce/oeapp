@@ -84,6 +84,10 @@ div#continue {
   padding: 2px;
 }
 
+.float-clear {
+  clear: both;
+}
+
 #word-corral {
   border: 2px solid black;
   min-height: 40px;

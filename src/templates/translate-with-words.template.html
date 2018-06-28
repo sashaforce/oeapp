@@ -9,6 +9,8 @@
 <div id="translation">
 </div>
 
-<div id="word-corral">
-  <span class="clickable-word" ng-repeat="w in ctrl.words" ng-click="ctrl.clickWord($event)">{{w}}</span>
+<div class="float-clear"><!-- needed so word-corral can be inline-block -->
+  <div id="word-corral">
+    <span class="clickable-word" ng-repeat="w in ctrl.words" ng-click="ctrl.clickWord($event)">{{w}}</span>
+  </div>
 </div>
