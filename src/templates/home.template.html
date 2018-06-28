@@ -7,7 +7,7 @@
 
 <div id="lessons">
     <a ng-repeat="l in ctrl.lessons" ui-sref="lesson({lessonId:l.id})">
-      <div id="lesson-{{l.id}}" class="lessonDiv">
+      <div id="lesson-{{l.id}}" class="lesson-div">
       <input type="image" src={{l.imageUrl}}></input>
       <br>{{l.name}}
       </div>

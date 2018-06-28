@@ -53,6 +53,11 @@ div#continue {
   margin: 30px;
 }
 
+.lesson-div {
+  float: left;
+  margin: 15px;
+}
+
 #audio-box {
   border: 2px solid black;
 }
