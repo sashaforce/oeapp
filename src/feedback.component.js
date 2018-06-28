@@ -19,10 +19,13 @@
     console.log(ctrl);
 
     var element = document.getElementById('feedback');
-    if (ctrl.isCorrect) {
-      element.classList.add("correct");
-    } else {
-      element.classList.add("incorrect");
+
+    ctrl.$onChanges = function () {
+      if (ctrl.isCorrect) {
+        element.classList.add("correct");
+      } else {
+        element.classList.add("incorrect");
+      }
     }
   }
 
