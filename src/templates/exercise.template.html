@@ -5,7 +5,8 @@
   </phoneme-component>
   <record-exercise-component
     ng-if="ctrl.exercise.type === 'RECORD'"
-    exercise="ctrl.exercise">
+    exercise="ctrl.exercise"
+    done="ctrl.done()">
   </record-exercise-component>
   <word-to-picture-component
     ng-if="ctrl.exercise.type === 'WORD-TO-PICTURE'"

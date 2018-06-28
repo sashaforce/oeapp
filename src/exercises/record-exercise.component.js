@@ -5,7 +5,8 @@ angular.module('OeApp').component('recordExerciseComponent', {
   templateUrl: 'src/templates/record-exercise.template.html',
   controller: 'RecordExerciseController as ctrl',
   bindings: {
-    exercise: '<'
+    exercise: '<',
+    done: '&'
   }
 }).controller('RecordExerciseController', RecordExerciseController);
 
@@ -16,16 +17,12 @@ function RecordExerciseController (AudioDataService, $scope) {
   ctrl.sampleAudioUrl = AudioDataService.getUrl(ctrl.exercise.audioId);
 
   // continue should be disabled until we expressly enable it
-  $scope.$emit("lesson:disableContinue");
 
   ctrl.enableContinue = function (enable) {
     console.log("enableContinue()", enable);
     if (enable) {
-      $scope.$emit("lesson:enableContinue");
-    } else {
-      $scope.$emit("lesson:disableContinue");
+      $scope.$apply(function () {ctrl.done();});
     }
-
   }
 }
 

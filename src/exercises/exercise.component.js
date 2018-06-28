@@ -86,6 +86,12 @@ function ExerciseController(LessonDataService, $scope){
     // });
   }
 
+  ctrl.done = function () {
+    // method for exercises to call that are finished, no feedback etc (eg record/playback)
+    console.log("done()");
+    ctrl.state = State.NOFEEDBACK;
+  }
+
   ctrl.doCheck = function () {
     ctrl.isCorrect = (ctrl.state === State.CORRECT);
     // $scope.$apply(function () {
