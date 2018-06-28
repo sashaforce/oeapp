@@ -90,6 +90,7 @@ div#continue {
 
 #word-corral {
   border: 2px solid black;
+  padding: 10px;
   min-height: 40px;
   min-width: 300px;
   clear:both;
@@ -116,9 +117,17 @@ div#continue {
   display: inline-block;
 }
 
+#translation > .clickable-word {
+  margin-right: 5px;
+}
+
 .clickable-word {
   background-color: #C6CDF2;
-  margin-right: 3px;
+  margin-right: 15px;
+  padding: 5px;
+  min-height: 30px;
+  float: left;
+  box-shadow: 5px 5px grey;
 }
 
 #progress {
