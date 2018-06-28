@@ -17,18 +17,22 @@
     var ctrl = this;
     console.log("SamplePlayerController() START", ctrl);
 
-    // initialize audio
     var sampleBuffer = null;
     var context;
-    try {
-      // Fix prefixing for blink & webkit-based browsers
-      window.AudioContext = window.AudioContext||window.webkitAudioContext;
-      context = new AudioContext();
+
+    // initialize audio
+    ctrl.$onChanges = function (changesObj) {
+      console.log("ctrl.$onChanges()", changesObj);
+      try {
+        // Fix prefixing for blink & webkit-based browsers
+        window.AudioContext = window.AudioContext||window.webkitAudioContext;
+        context = new AudioContext();
+      }
+      catch(e) {
+        alert('Web Audio API is not supported in this browser');
+      }
+      loadSound(ctrl.url);
     }
-    catch(e) {
-      alert('Web Audio API is not supported in this browser');
-    }
-    loadSound(ctrl.url);
 
     function loadSound(url) {
       var request = new XMLHttpRequest();

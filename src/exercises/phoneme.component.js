@@ -14,9 +14,11 @@
   function PhonemeController(ImageService, AudioDataService, $scope) {
     var ctrl = this;
 
-    ctrl.listenButtonUrl = ImageService.getUrl("speaker-button-sm");
-    ctrl.imageUrl = ImageService.getUrl(ctrl.exercise.imageId);
-    ctrl.audioUrl = AudioDataService.getUrl(ctrl.exercise.audioId);
+    ctrl.$onChanges = function (changesObj) {
+      ctrl.listenButtonUrl = ImageService.getUrl("speaker-button-sm");
+      ctrl.imageUrl = ImageService.getUrl(ctrl.exercise.imageId);
+      ctrl.audioUrl = AudioDataService.getUrl(ctrl.exercise.audioId);
+    }
 
   };
 }());
