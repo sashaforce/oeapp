@@ -1,0 +1,17 @@
+<div id="description">Pick the word that completes this sentence.</div>
+<div id="sentence">{{ctrl.exercise.part1}} ____________ {{ctrl.exercise.part2}}</div>
+<div id="picklist">
+  <!-- <radio-group ng-model="ctrl.selectedWord"> -->
+
+  <form>
+    <span ng-repeat="w in ctrl.exercise.words">
+      <input type="radio" class="example-radio-button"  ng-click="ctrl.onClick()" ng-model="ctrl.answer" value="{{w}}">{{w}}<br>
+    </span>
+  </form>
+
+</div>
+
+<!-- debug block -->
+<!-- <ul>
+  <li ng-repeat="(key, value) in ctrl">{{key}}: {{value}}</li>
+</ul> -->

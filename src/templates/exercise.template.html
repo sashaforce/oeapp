@@ -18,6 +18,11 @@
     exercise="ctrl.exercise"
     user-action="ctrl.onUserAction(dirty, correct, message)">
   </translate-with-words-component>
+  <missing-word-component
+    ng-if="ctrl.exercise.type === 'MISSING-WORD'"
+    exercise="ctrl.exercise"
+    user-action="ctrl.onUserAction(dirty, correct, message)">
+  </missing-word-component>
 </div>
 
 <div ng-if="ctrl.feedbackVisible()">

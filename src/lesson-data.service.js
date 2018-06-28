@@ -12,7 +12,7 @@ function LessonDataService(){
     id: "test",
     name:"TEST",
     imageId: "questionmark-button",
-    exercises: ['translate-winter', 'day-night', 'i-example', 'aesc-example']
+    exercises: ['missing-word-example', 'translate-winter', 'day-night', 'i-example', 'aesc-example']
   });
   lessons.push({
     id: "winter-comes",
@@ -28,6 +28,17 @@ function LessonDataService(){
   });
 
   var exercises = [];
+
+  exercises.push({
+    id: 'missing-word-example',
+    type: 'MISSING-WORD',
+    part1: "The quick brown",
+    part2: "jumped over the lazy dogs.",
+    words: ['cat', 'fox', 'mouse'],
+    answer: "fox",
+    messageWrong: "Hint: not a game of cat & mouse"
+  });
+
   exercises.push({
     id: 'translate-winter',
     type: 'TRANSLATE-WORDS',
